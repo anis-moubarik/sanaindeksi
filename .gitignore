@@ -1,2 +1,3 @@
 target/
 !target/site/cobertura/coverage.xml
+!target/*.jar
