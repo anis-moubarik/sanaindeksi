@@ -1,6 +1,7 @@
 package tira.trie;
 
 
+
 public class Trie{
     
     private TrieSolmu juuri;
@@ -13,9 +14,8 @@ public class Trie{
         int l = sana.length();
         char[] kirjaimet = sana.toCharArray();
         TrieSolmu solmu = juuri;
-        
         for(int i = 0; i < l; i++){
-            if (solmu.lapset.hae(kirjaimet[i]) == null)
+            if (solmu.lapset.etsi(kirjaimet[i]) == null)
                 solmu.lapset.lisää(new TrieSolmu(kirjaimet[i], i  == l-1 ? true : false));
             solmu = solmu.lapset.hae(kirjaimet[i]);
         }

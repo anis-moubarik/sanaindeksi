@@ -9,5 +9,7 @@ public interface DynaaminenTauluInterface {
     public TrieSolmu hae(int index);
     public boolean onkoTyhjä();
     public TrieSolmu poista(int index);
-    
+    public int size();
+    public void järjestäTaulu();
+    public TrieSolmu etsi(char c);
 }
