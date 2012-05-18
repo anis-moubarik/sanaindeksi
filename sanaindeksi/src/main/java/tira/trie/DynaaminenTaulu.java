@@ -4,66 +4,113 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * 
+ * @author Anis
+ */
 public class DynaaminenTaulu implements DynaaminenTauluInterface{
 
     private ArrayList<TrieSolmu> al;
     
+    /**
+     * 
+     */
     public DynaaminenTaulu(){
         al = new ArrayList<TrieSolmu>();
     }
     
+    /**
+     * 
+     * @param o
+     */
     public void lisää(TrieSolmu o) {
         al.add(o);
         järjestäTaulu();
     }
 
+    /**
+     * 
+     */
     public void tyhjennäTaulu() {
         al.clear();
     }
 
+    /**
+     * 
+     * @param elem
+     * @return boolean
+     */
     public boolean sisältää(TrieSolmu elem) {
         return al.contains(elem);
     }
 
+    /**
+     * 
+     * @param index
+     * @return TrieSolmu
+     */
     public TrieSolmu hae(int index) {
         if(index > al.size())
             return null;
-        else if(index < al.size())
+        else if(index < 0)
             return null;
         else
             return al.get(index);
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean onkoTyhjä() {
         return al.isEmpty();
     }
 
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public TrieSolmu poista(int index) {
         return al.remove(index);
     }
     
+    /**
+     * 
+     * @return
+     */
     public int size(){
         return al.size();
     }
 
+    /**
+     * 
+     */
     public void järjestäTaulu() {
         Collections.sort(al, new DtComparator());
     }
     
+    /**
+     * 
+     * @param c
+     * @return
+     */
     public TrieSolmu etsi(char c){
         int index = bSearch(c);
         return hae(index);
     }
 
     private int bSearch(char c){
-        int i = 0, min = 0, max = 0;
-        while(al.size() > 0){
-            int mid = al.size() / 2;
+        int start, end, mid;
+        start = 0;
+        end = al.size() - 1;
+        while(start <= end){
+            mid = (start + end) / 2;
             
             if(al.get(mid).kirjain < c)
-                min = mid + 1;
+                start = mid + 1;
             else if (al.get(mid).kirjain > c)
-                max = mid - 1;
+                end = mid - 1;
             else
                 return mid;
         }

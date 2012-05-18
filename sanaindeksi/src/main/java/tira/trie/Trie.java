@@ -2,14 +2,27 @@ package tira.trie;
 
 
 
+/**
+ * 
+ * @author Anis
+ */
 public class Trie{
     
     private TrieSolmu juuri;
     
+    /**
+     * 
+     */
     public Trie(){
         juuri = new TrieSolmu('\0', false);
     }
     
+    /**
+     * Lisätään sana, jos solmulla ei ole lapsia, tehdään sille dynaaminen taulu 
+     * jonne lapset lisätään. Jos solmulta löytyy kyseisen kirjaimen lapsi alustetaan
+     * solmu muuttuja lapsella.
+     * @param sana
+     */
     public void lisääSana(String sana){
         int l = sana.length();
         char[] kirjaimet = sana.toCharArray();
