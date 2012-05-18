@@ -7,10 +7,11 @@ public class TrieSolmu{
     boolean onkoSana;
     int[] rivit;
     
-    public TrieSolmu(char kirjain, boolean onkoSana){
+    public TrieSolmu(char kirjain, boolean onkoSana, int[] rivit){
         this.kirjain = kirjain;
         this.onkoSana = onkoSana;
         this.lapset = new DynaaminenTaulu();
+        this.rivit = rivit;
     }
     
 }
