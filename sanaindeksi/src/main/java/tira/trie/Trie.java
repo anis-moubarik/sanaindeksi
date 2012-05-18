@@ -17,7 +17,7 @@ public class Trie{
         for(int i = 0; i < l; i++){
             if (solmu.lapset.etsi(kirjaimet[i]) == null)
                 solmu.lapset.lisää(new TrieSolmu(kirjaimet[i], i  == l-1 ? true : false));
-            solmu = solmu.lapset.hae(kirjaimet[i]);
+            solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
     }
     
