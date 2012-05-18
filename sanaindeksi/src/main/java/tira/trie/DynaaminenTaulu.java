@@ -51,11 +51,25 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     }
     
     public TrieSolmu etsi(char c){
-        int index = Collections.binarySearch((ArrayList)al, (int)c);
+        int index = bSearch(c);
         return hae(index);
     }
 
-    
+    private int bSearch(char c){
+        int i = 0, min = 0, max = 0;
+        while(al.size() > 0){
+            int mid = al.size() / 2;
+            
+            if(al.get(mid).kirjain < c)
+                min = mid + 1;
+            else if (al.get(mid).kirjain > c)
+                max = mid - 1;
+            else
+                return mid;
+        }
+        
+        return -1;
+    }
     
 }
 
