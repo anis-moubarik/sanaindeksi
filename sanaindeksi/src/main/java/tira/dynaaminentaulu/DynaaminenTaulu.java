@@ -1,8 +1,9 @@
-package tira.trie;
+package tira.dynaaminentaulu;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import tira.trie.TrieSolmu;
 
 /**
  * 
@@ -21,7 +22,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     
     /**
      * 
-     * @param o
+     * @param Lisättävä TrieSolmu
      */
     public void lisää(TrieSolmu o) {
         al.add(o);
@@ -29,7 +30,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     }
 
     /**
-     * 
+     * Tyhjentää taulun.
      */
     public void tyhjennäTaulu() {
         al.clear();
@@ -37,8 +38,8 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
 
     /**
      * 
-     * @param elem
-     * @return boolean
+     * @param haettava TrieSolmu
+     * @return true jos TrieSolmu löytyy dynaamisestataulusta.
      */
     public boolean sisältää(TrieSolmu elem) {
         return al.contains(elem);
@@ -46,8 +47,8 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
 
     /**
      * 
-     * @param index
-     * @return TrieSolmu
+     * @param index jolla taulusta haetaan solmu.
+     * @return TrieSolmu joka on löydetty indexin kohdalta.
      */
     public TrieSolmu hae(int index) {
         if(index > al.size())
@@ -60,7 +61,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
 
     /**
      * 
-     * @return
+     * @return true jos taulu on tyhjä
      */
     public boolean onkoTyhjä() {
         return al.isEmpty();
@@ -68,8 +69,8 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
 
     /**
      * 
-     * @param index
-     * @return
+     * @param index poistettava solmu
+     * @return TrieSolmu joka on poistettu
      */
     public TrieSolmu poista(int index) {
         return al.remove(index);
@@ -77,14 +78,14 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     
     /**
      * 
-     * @return
+     * @return taulun koko
      */
     public int size(){
         return al.size();
     }
 
     /**
-     * 
+     * Järjestetään taulu leksikografiseen järjestykseen.
      */
     public void järjestäTaulu() {
         Collections.sort(al, new DtComparator());
@@ -92,8 +93,8 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     
     /**
      * 
-     * @param c
-     * @return
+     * @param etsittävä kirjain solmutaulusta.
+     * @return löydetty TrieSolmu, tai jos kirjainta ei löydetä, null
      */
     public TrieSolmu etsi(char c){
         int index = bSearch(c);
@@ -107,9 +108,9 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
         while(start <= end){
             mid = (start + end) / 2;
             
-            if(al.get(mid).kirjain < c)
+            if(al.get(mid).getKirjain() < c)
                 start = mid + 1;
-            else if (al.get(mid).kirjain > c)
+            else if (al.get(mid).getKirjain() > c)
                 end = mid - 1;
             else
                 return mid;
@@ -123,8 +124,8 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
 class DtComparator implements Comparator{
 
     public int compare(Object t1, Object t2) {
-        char c1 = ((TrieSolmu)t1).kirjain;
-        char c2 = ((TrieSolmu)t2).kirjain;
+        char c1 = ((TrieSolmu)t1).getKirjain();
+        char c2 = ((TrieSolmu)t2).getKirjain();
         if(c1 > c2)
             return 1;
         else if(c1 < c2)

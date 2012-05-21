@@ -1,5 +1,7 @@
 
-package tira.trie;
+package tira.dynaaminentaulu;
+
+import tira.trie.TrieSolmu;
 
 public interface DynaaminenTauluInterface {
     
