@@ -13,13 +13,11 @@ public class TrieTest {
     //Alustavat testi vielä toistaiseksi mainissa.
     Trie puu;
     TiedostonLuku tl;
-    SanaPuhdistaja sp;
     
     @Before
     public void setUp(){
         puu = new Trie();
         tl = new TiedostonLuku();
-        sp = new SanaPuhdistaja();
     }
     
     
@@ -61,7 +59,6 @@ public class TrieTest {
         for(String rivi : kalevala){
             String[] sanat = rivi.split(" ");
             for(String sana : sanat){
-                sana = sp.puhidstaSana(sana);
                 puu.lisääSana(sana, riviNumero);
             }
             riviNumero++;
