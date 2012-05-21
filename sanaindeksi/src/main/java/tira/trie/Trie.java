@@ -14,7 +14,7 @@ public class Trie{
      * 
      */
     public Trie(){
-        juuri = new TrieSolmu('\0', false, null);
+        juuri = new TrieSolmu('\0', false, 0);
     }
     
     /**
@@ -23,14 +23,13 @@ public class Trie{
      * solmu muuttuja lapsella.
      * @param sana
      */
-    public void lisääSana(String sana, int[] rivit){
+    public void lisääSana(String sana, int rivi){
         int l = sana.length();
         char[] kirjaimet = sana.toCharArray();
         TrieSolmu solmu = juuri;
         for(int i = 0; i < l; i++){
-            rivit[0] = i;
             if (solmu.lapset.etsi(kirjaimet[i]) == null)
-                solmu.lapset.lisää(new TrieSolmu(kirjaimet[i], i  == l-1 ? true : false, rivit));
+                solmu.lapset.lisää(new TrieSolmu(kirjaimet[i], i  == l-1 ? true : false, rivi));
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
     }

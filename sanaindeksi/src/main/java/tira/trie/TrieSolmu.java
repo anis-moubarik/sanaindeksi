@@ -1,5 +1,6 @@
 package tira.trie;
 
+import java.util.LinkedList;
 import tira.dynaaminentaulu.DynaaminenTaulu;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
 
@@ -8,13 +9,13 @@ public class TrieSolmu{
     char kirjain;
     DynaaminenTauluInterface lapset;
     boolean onkoSana;
-    int[] rivit;
+    LinkedList<Integer> rivit = new LinkedList<Integer>();
     
-    public TrieSolmu(char kirjain, boolean onkoSana, int[] rivit){
+    public TrieSolmu(char kirjain, boolean onkoSana, int rivi){
         this.kirjain = kirjain;
         this.onkoSana = onkoSana;
         this.lapset = new DynaaminenTaulu();
-        this.rivit = rivit;
+        rivit.add(rivi);
     }
 
     public char getKirjain() {
@@ -41,12 +42,16 @@ public class TrieSolmu{
         this.onkoSana = onkoSana;
     }
 
-    public int[] getRivit() {
+    public LinkedList getRivit() {
         return rivit;
     }
 
-    public void setRivit(int[] rivit) {
+    public void setRivit(LinkedList rivit) {
         this.rivit = rivit;
+    }
+    
+    public void lisääRivi(int rivi){
+        rivit.add(rivi);
     }
     
 }
