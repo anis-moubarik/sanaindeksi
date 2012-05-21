@@ -35,4 +35,25 @@ public class Trie{
         }
     }
     
+    public boolean etsiSana(String sana){
+        char[] kirjaimet = sana.toCharArray();
+        int l = kirjaimet.length;
+        TrieSolmu solmu = juuri;
+        
+        int i;
+        for(i = 0; i < l; i++){
+            if(solmu == null)
+                return false;
+            solmu = solmu.lapset.etsi(kirjaimet[i]);
+        }
+        
+        if (i == l && solmu == null)
+            return false;
+        
+        if (solmu != null && !solmu.onkoSana)
+            return false;
+        
+        return true;
+    }
+    
 }
