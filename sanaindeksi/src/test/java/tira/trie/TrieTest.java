@@ -21,10 +21,9 @@ public class TrieTest {
     }
     
     
-    //Ei vielä tee mitään, ennen kuin etsimis operaatio toteutetaan Trielle.
     @Test
     public void lisäysTrieen(){
-        String[] sanat = {"sana", "ananas", "kana", "puhelin", "sanoma", "puuhamaa", "kirjasto"};
+        String[] sanat = {"sana,", "väinämöinen!"};
         int i = 0;
         long lisäysStart = System.currentTimeMillis();
         for (String sana : sanat){
@@ -35,6 +34,7 @@ public class TrieTest {
         
         long start = System.currentTimeMillis();
         for (String sana : sanat){
+            sana = sana.replaceAll("[!=;,)]", "");
             boolean tulos = puu.etsiSana(sana);
             assertEquals(true, tulos);
         }
@@ -65,8 +65,8 @@ public class TrieTest {
         }
         long lisäysEnd = System.currentTimeMillis();
         
-        String[] etsittävätSanat = {"Väinämöinen", "runo", "Veli", "Sampo", "Louhi", "Ilmarinen",
-                                    "Kullervo", "leipä"};
+        String[] etsittävätSanat = {"Väinämöinen", "runoa", "Veli", "Sampo", "Louhi", "Ilmarinen",
+                                    "Kullervon", "leipä"};
         long start = System.currentTimeMillis();
         for(String sana : etsittävätSanat){
             boolean tulos = puu.etsiSana(sana);

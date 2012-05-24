@@ -24,6 +24,7 @@ public class Trie{
      * @param sana
      */
     public void lisääSana(String sana, int rivi){
+        sana = sana.replaceAll("[!=;,?:.)]", "");
         int l = sana.length();
         char[] kirjaimet = sana.toCharArray();
         TrieSolmu solmu = juuri;
