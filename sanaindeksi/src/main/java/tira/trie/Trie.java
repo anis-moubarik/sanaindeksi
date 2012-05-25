@@ -17,6 +17,17 @@ public class Trie{
         juuri = new TrieSolmu('\0', false, 0);
     }
     
+    public void lisääSanat(String[] sanat){
+        int riviNumero = 1;
+        for(String rivi : sanat){
+           String[] riviSanat = rivi.split(" ");
+           for(String sana : riviSanat){
+               lisääSana(sana, riviNumero);
+           }
+           riviNumero++;
+       }
+    }
+    
     /**
      * Lisätään sana, jos solmulla ei ole lapsia, tehdään sille dynaaminen taulu 
      * jonne lapset lisätään. Jos solmulta löytyy kyseisen kirjaimen lapsi alustetaan
