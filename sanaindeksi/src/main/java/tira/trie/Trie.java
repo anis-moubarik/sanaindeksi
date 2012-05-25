@@ -25,17 +25,20 @@ public class Trie{
      */
     public void lisääSana(String sana, int rivi){
         sana = sana.replaceAll("[!=;,?:.)]", "");
-        int l = sana.length();
+        sana = sana.toLowerCase();
+        int l = sana.length(), i = 0;
         char[] kirjaimet = sana.toCharArray();
         TrieSolmu solmu = juuri;
-        for(int i = 0; i < l; i++){
+        for(i = 0; i < l; i++){
             if (solmu.lapset.etsi(kirjaimet[i]) == null)
                 solmu.lapset.lisää(new TrieSolmu(kirjaimet[i], i  == l-1 ? true : false, rivi));
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
+        solmu.setOnkoSana(true);
     }
     
     public boolean etsiSana(String sana){
+        sana = sana.toLowerCase();
         char[] kirjaimet = sana.toCharArray();
         int l = kirjaimet.length;
         TrieSolmu solmu = juuri;

@@ -20,6 +20,25 @@ public class TrieTest {
         tl = new TiedostonLuku();
     }
     
+    @Test
+    public void aliSanat(){
+        String[] sanat = {"Runoilija", "Runo", "Jalkapallo", "Jalka", "pallo"};
+        int riviNumero = 0;
+        Trie tr = new Trie();
+        
+        for(String sana : sanat){
+            tr.lisääSana(sana, riviNumero);
+            riviNumero++;
+        }
+        
+        boolean tulos = tr.etsiSana("runo");
+        assertEquals(true, tulos);
+        tulos = tr.etsiSana("jalka");
+        assertEquals(true, tulos);
+        tulos = tr.etsiSana("Pallo");
+        assertEquals(true, tulos);
+    }
+    
     
     @Test
     public void lisäysTrieen(){
@@ -47,7 +66,7 @@ public class TrieTest {
         System.out.println("Aikaa meni tallentamiseen: "+(lisäysEnd - lisäysStart)+" millisekuntia");
         System.out.println("Start: "+lisäysStart);
         System.out.println("End: "+lisäysEnd);
-        System.out.println("-------------------------------------------------------");
+        System.out.println("-------------------------------------------------------\n\n");
     }
     
     @Test
@@ -70,7 +89,6 @@ public class TrieTest {
         long start = System.currentTimeMillis();
         for(String sana : etsittävätSanat){
             boolean tulos = puu.etsiSana(sana);
-            System.out.println(sana);
             assertEquals(true, tulos);
         }
         long end = System.currentTimeMillis();
