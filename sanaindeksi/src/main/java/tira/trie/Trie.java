@@ -34,7 +34,8 @@ public class Trie{
                 solmu.lapset.lisää(new TrieSolmu(kirjaimet[i], i  == l-1 ? true : false, rivi));
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
-        solmu.setOnkoSana(true);
+        solmu.setOnkoSana(true); //Varmistetaan, että Yhdyssanojen ja pitkien sanojen alisanat tunnistetaan myös sanoiksi
+        solmu.lisääRivi(rivi);
     }
     
     public boolean etsiSana(String sana){
@@ -57,6 +58,28 @@ public class Trie{
             return false;
         
         return true;
+    }
+    
+    public TrieSolmu etsiSolmu(String sana){
+        sana = sana.toLowerCase();
+        char[] kirjaimet = sana.toCharArray();
+        int l = kirjaimet.length;
+        TrieSolmu solmu = juuri;
+        
+        int i;
+        for(i = 0; i < l; i++){
+            if(solmu == null)
+                return null;
+            solmu = solmu.lapset.etsi(kirjaimet[i]);
+        }
+        
+        if (i == l && solmu == null)
+            return null;
+        
+        if (solmu != null && !solmu.onkoSana)
+            return null;
+        
+        return solmu;
     }
     
 }

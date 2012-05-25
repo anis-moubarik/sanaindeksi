@@ -72,7 +72,7 @@ public class TrieTest {
     @Test
     public void isoLisäysTrieen() throws IOException{
         String[] kalevala = tl.lueRivitTaulukkoon("kalevala.txt");
-        int riviNumero = 0;
+        int riviNumero = 1;
         
         long lisäysStart = System.currentTimeMillis();
         for(String rivi : kalevala){
@@ -102,7 +102,23 @@ public class TrieTest {
         System.out.println("End: "+lisäysEnd);
         System.out.println("-------------------------------------------------------");
         
+    }
+    
+    @Test
+    public void riviTesti() throws IOException{
+        String[] kalevala = tl.lueRivitTaulukkoon("kalevala.txt");
+        int riviNumero = 1;
         
+        for(String rivi : kalevala){
+            String[] sanat = rivi.split(" ");
+            for(String sana : sanat){
+                puu.lisääSana(sana, riviNumero);
+            }
+            riviNumero++;
+        }
+        TrieSolmu s = puu.etsiSolmu("Kullervo");
+        //Ensimmäinen
+        assertEquals(15234, (int)s.rivit.get(0));
     }
     
 }
