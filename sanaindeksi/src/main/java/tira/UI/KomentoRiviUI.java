@@ -13,23 +13,21 @@ import tira.trie.Trie;
 
 public class KomentoRiviUI{
     private Trie tr = new Trie();
+    ArrayList<String> komennot = new ArrayList<String>();
+    
+    public KomentoRiviUI(){
+        komennot = new ArrayList<String>();
+        komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
+    }
     
     public void run() throws IOException{
-        String komento;
-        ArrayList<String> komennot = new ArrayList<String>();
-        komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
+        String in;
         Scanner sc = new Scanner(System.in);
         
         while(true){
             System.out.print("> ");
-            komento = sc.next();
-            String parametri = sc.next();
-            if(!komennot.contains(komento)){
-                System.out.println("Komentoa: \""+komento+"\" ei löydy");
-            }
-            if(komento.equals("lataa")){
-                lataa(parametri);
-            }
+            in = sc.nextLine();
+            prosessoiKomento(in);
         }
     }
     
@@ -39,20 +37,12 @@ public class KomentoRiviUI{
     
     public void lataa(String tiedosto) throws IOException{
         TiedostonLuku tl = new TiedostonLuku();
-        String[] teksti = {};
+        String[] teksti;
         
-        //Loggeri
-        Logger logger = Logger.getLogger("sanaindeksi");
-        FileHandler fh = new FileHandler("sanaindeksi.log", true);
-        logger.addHandler(fh);
-        logger.setLevel(Level.ALL);
-        SimpleFormatter formatter = new SimpleFormatter();
-        fh.setFormatter(formatter);
+
         try {
             teksti = tl.lueRivitTaulukkoon(tiedosto);
         } catch (FileNotFoundException ex) {
-            logger.log(Level.SEVERE, null, ex);
-            System.out.println(logger.getParent());
             System.out.println("Tiedostoa ei löytynyt!");
             return;
         }
@@ -61,5 +51,21 @@ public class KomentoRiviUI{
         tr.lisääSanat(teksti);
         long end = System.currentTimeMillis();
         System.out.println("Ladattu. Aikaa meni "+(end-start)+"ms");
+    }
+
+    private void prosessoiKomento(String in) throws IOException {
+        String[] komentoJaParametrit = in.split(" ");
+        if(komentoJaParametrit[0].equals("")){
+            return;
+        }else if(!komennot.contains(komentoJaParametrit[0])){
+            System.out.println("Komentoa: \""+komentoJaParametrit[0]+"\" ei tunnistettu.");
+        }else if(komentoJaParametrit.length > 2){
+            System.out.println("Liikaa parametreja.");
+        }else if(komentoJaParametrit.length == 1){
+            System.out.println("Et antanut yhtään parametria.");
+        }else if(komentoJaParametrit[0].equals("lataa")){
+            lataa(komentoJaParametrit[1]);
+        }
+        
     }
 }
