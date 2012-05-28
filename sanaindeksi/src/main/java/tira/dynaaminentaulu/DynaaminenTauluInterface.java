@@ -5,10 +5,9 @@ import tira.trie.TrieSolmu;
 
 /**
  * 
- * @author Anis
+ * @author moubarik
  */
 public interface DynaaminenTauluInterface {
-    
     /**
      * 
      * @param o

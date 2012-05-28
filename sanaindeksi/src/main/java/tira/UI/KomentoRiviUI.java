@@ -9,7 +9,7 @@ import tira.trie.Trie;
 
 /**
  * 
- * @author Anis
+ * @author moubarik
  */
 public class KomentoRiviUI{
     private Trie tr = new Trie();
@@ -34,24 +34,22 @@ public class KomentoRiviUI{
         while(true){
             System.out.print("> ");
             in = sc.nextLine();
-            prosessoiKomento(in);
+            if(!in.equals(""))
+                prosessoiKomento(in);
         }
     }
-    
+
     private void etsi(){
         
     }
     
     /**
-     * 
      * @param tiedosto
      * @throws IOException
      */
     public void lataa(String tiedosto) throws IOException{
         TiedostonLuku tl = new TiedostonLuku();
         String[] teksti;
-        
-
         try {
             teksti = tl.lueRivitTaulukkoon(tiedosto);
         } catch (FileNotFoundException ex) {
@@ -64,12 +62,14 @@ public class KomentoRiviUI{
         long end = System.currentTimeMillis();
         System.out.println("Ladattu. Aikaa meni "+(end-start)+"ms");
     }
-
+    
+    /**
+     * Metodi ottaa String komennon jolla ohjelmaa ohjataan.
+     * @param in
+     */
     private void prosessoiKomento(String in) throws IOException {
         String[] komentoJaParametrit = in.split(" ");
-        if(komentoJaParametrit[0].equals("")){
-            return;
-        }else if(!komennot.contains(komentoJaParametrit[0])){
+        if(!komennot.contains(komentoJaParametrit[0])){
             System.out.println("Komentoa: \""+komentoJaParametrit[0]+"\" ei tunnistettu.");
         }else if(komentoJaParametrit.length > 2){
             System.out.println("Liikaa parametreja.");

@@ -18,7 +18,7 @@ public class Trie{
     }
     
     /**
-     * 
+     * Lisätään String taulukosta kaikki sanat puuhun.
      * @param sanat
      */
     public void lisääSanat(String[] sanat){
@@ -55,7 +55,7 @@ public class Trie{
     }
     
     /**
-     * 
+     * Etsitään puusta parametrina annettu sana.
      * @param sana
      * @return
      */
@@ -66,15 +66,18 @@ public class Trie{
         TrieSolmu solmu = juuri;
         
         int i;
+        //Etsitään solmujen lapsi taulukoista sanan kirjaimia
         for(i = 0; i < l; i++){
             if(solmu == null)
                 return false;
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
         
+        //Jos kaikki lapset on käytä läpi ja sanaa ei vielä olla löydetty palautetaan false
         if (i == l && solmu == null)
             return false;
         
+        //Jos solmu on löydetty, mutta ei ole sana palautetaan false
         if (solmu != null && !solmu.onkoSana)
             return false;
         
@@ -82,7 +85,8 @@ public class Trie{
     }
     
     /**
-     * 
+     * Etsitään sanalla TrieSolmua ja palautetaan se.
+     * Toimii samaan tapaan etsiSanan kanssa.
      * @param sana
      * @return
      */

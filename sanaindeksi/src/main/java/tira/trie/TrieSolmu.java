@@ -29,15 +29,15 @@ public class TrieSolmu{
     }
 
     /**
-     * 
-     * @return
+     * Palautetaan solmun kirjain.
+     * @return char
      */
     public char getKirjain() {
         return kirjain;
     }
 
     /**
-     * 
+     * Asetetaan solmun kirjain
      * @param kirjain
      */
     public void setKirjain(char kirjain) {
@@ -45,7 +45,7 @@ public class TrieSolmu{
     }
 
     /**
-     * 
+     * Palauttaa dynaamisessa taulussa olevat solmun lapset.
      * @return
      */
     public DynaaminenTauluInterface getLapset() {
@@ -53,7 +53,7 @@ public class TrieSolmu{
     }
 
     /**
-     * 
+     * Asetetaan solmun lapset.
      * @param lapset
      */
     public void setLapset(DynaaminenTauluInterface lapset) {
@@ -61,15 +61,15 @@ public class TrieSolmu{
     }
 
     /**
-     * 
-     * @return
+     * Palauttaa true, jos solmu on merkitty sanaksi.
+     * @return boolean
      */
     public boolean isOnkoSana() {
         return onkoSana;
     }
 
     /**
-     * 
+     * Asetetaan kirjaimen sana totuusarvo.
      * @param onkoSana
      */
     public void setOnkoSana(boolean onkoSana) {
@@ -77,15 +77,15 @@ public class TrieSolmu{
     }
 
     /**
-     * 
-     * @return
+     * Palautetaan linkitetty lista johon on talletettu rivit joilla sana esiintyy tiedostossa.
+     * @return LinkedList
      */
     public LinkedList getRivit() {
         return rivit;
     }
 
     /**
-     * 
+     * Asetetaan rivit solmulle.
      * @param rivit
      */
     public void setRivit(LinkedList rivit) {
@@ -93,7 +93,7 @@ public class TrieSolmu{
     }
     
     /**
-     * 
+     * Lisätään yksittäinen rivi solmulle.
      * @param rivi
      */
     public void lisääRivi(int rivi){

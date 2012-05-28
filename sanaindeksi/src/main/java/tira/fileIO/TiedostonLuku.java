@@ -1,6 +1,9 @@
 package tira.fileIO;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +18,9 @@ public class TiedostonLuku {
     BufferedReader br;
     
     /**
-     * 
+     * Luetaan tiedosto String[] taulukkoon, käytetään UTF8 enkoodausta.
      * @param tiedostonimi
-     * @return
+     * @return String[]
      * @throws IOException
      */
     public String[] lueRivitTaulukkoon(String tiedostonimi) throws IOException{
@@ -35,7 +38,6 @@ public class TiedostonLuku {
         return rivit.toArray(new String[rivit.size()]);
     }
     /**
-     * 
      * @param tiedostonimi
      * @return
      * @throws IOException
