@@ -1,9 +1,8 @@
 package tira.dynaaminentaulu;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 import tira.trie.TrieSolmu;
+
 
 /**
  * 
@@ -12,6 +11,7 @@ import tira.trie.TrieSolmu;
 public class DynaaminenTaulu implements DynaaminenTauluInterface{
 
     private ArrayList<TrieSolmu> al;
+    private int count = 0;
     
     /**
      * 

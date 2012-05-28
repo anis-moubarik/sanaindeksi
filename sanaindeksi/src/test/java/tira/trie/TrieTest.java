@@ -1,6 +1,8 @@
 
 package tira.trie;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.LinkedList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -108,6 +110,7 @@ public class TrieTest {
     public void riviTesti() throws IOException{
         String[] kalevala = tl.lueRivitTaulukkoon("kalevala.txt");
         int riviNumero = 1;
+        LinkedList<Integer> kaikkiRivit = new LinkedList<Integer>();
         
         for(String rivi : kalevala){
             String[] sanat = rivi.split(" ");
@@ -117,6 +120,28 @@ public class TrieTest {
             riviNumero++;
         }
         TrieSolmu s = puu.etsiSolmu("Kullervo");
+        
+        for(int rivi : s.rivit){
+            kaikkiRivit.add(rivi);
+        }
+        for(int i = 0; i < s.lapset.size(); i++){
+            for (int j = 0; j < s.lapset.hae(i).rivit.size(); j++) {
+               kaikkiRivit.add(s.lapset.hae(i).rivit.get(j)); 
+            }
+        }
+        
+        Collections.sort(kaikkiRivit);
+        
+        System.out.print("\n\nRivi testi: Kullervo rivit:");
+        int i = 0;
+        for(int rivi : kaikkiRivit){
+            if((i%5) == 0) System.out.println("");
+            System.out.print(rivi+", ");
+            i++;
+        }
+        
+        
+        
         //Ensimmäinen
         assertEquals(15234, (int)s.rivit.get(0));
     }

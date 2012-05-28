@@ -4,7 +4,6 @@ package tira.dynaaminentaulu;
 import tira.trie.TrieSolmu;
 
 public interface DynaaminenTauluInterface {
-    
     public void lisää(TrieSolmu o);
     public void tyhjennäTaulu();
     public boolean sisältää(TrieSolmu elem);
