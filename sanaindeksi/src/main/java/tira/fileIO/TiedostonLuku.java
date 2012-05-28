@@ -1,8 +1,6 @@
 package tira.fileIO;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,8 @@ import java.util.List;
  */
 public class TiedostonLuku {
     
-    FileReader fr;
+    FileInputStream fr;
+    InputStreamReader ir;
     BufferedReader br;
     
     /**
@@ -22,20 +21,23 @@ public class TiedostonLuku {
      * @throws IOException
      */
     public String[] lueRivitTaulukkoon(String tiedostonimi) throws IOException{
-        fr = new FileReader(tiedostonimi);
-        br = new BufferedReader(fr);
+        fr = new FileInputStream(tiedostonimi);
+        ir = new InputStreamReader(fr, "UTF8");
+        br = new BufferedReader(ir);
         List<String> rivit = new ArrayList<String>();
         String rivi = null;
+        
         
         while((rivi = br.readLine()) != null){
             rivit.add(rivi);
         }
-        br.close();
+        ir.close();
         return rivit.toArray(new String[rivit.size()]);
     }
     public String lueTiedostoMuistiin(String tiedostonimi) throws IOException{
-        fr = new FileReader(tiedostonimi);
-        br = new BufferedReader(fr);
+        fr = new FileInputStream(tiedostonimi);
+        ir = new InputStreamReader(fr, "UTF8");
+        br = new BufferedReader(ir);
         String teksti = null, rivi;
         
         while((rivi = br.readLine()) != null){

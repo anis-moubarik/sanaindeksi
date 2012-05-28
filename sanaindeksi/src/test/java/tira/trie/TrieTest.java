@@ -87,7 +87,7 @@ public class TrieTest {
         long lisäysEnd = System.currentTimeMillis();
         
         String[] etsittävätSanat = {"Väinämöinen", "runoa", "Veli", "Sampo", "Louhi", "Ilmarinen",
-                                    "Kullervon", "leipä"};
+                                    "Kullervo", "leipä"};
         long start = System.currentTimeMillis();
         for(String sana : etsittävätSanat){
             boolean tulos = puu.etsiSana(sana);
@@ -102,7 +102,7 @@ public class TrieTest {
         System.out.println("Aikaa meni tallentamiseen: "+(lisäysEnd - lisäysStart)+" millisekuntia");
         System.out.println("Start: "+lisäysStart);
         System.out.println("End: "+lisäysEnd);
-        System.out.println("-------------------------------------------------------");
+        System.out.println("---------------------------------------------------------");
         
     }
     
