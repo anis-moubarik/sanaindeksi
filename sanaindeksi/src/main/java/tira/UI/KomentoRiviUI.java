@@ -38,7 +38,7 @@ public class KomentoRiviUI{
                 prosessoiKomento(in);
         }
     }
-    
+
     private void etsi(){
         
     }

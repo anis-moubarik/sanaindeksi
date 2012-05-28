@@ -14,36 +14,14 @@ import tira.trie.TrieSolmu;
  */
 public class DynaaminenTauluTest {
     
-    public DynaaminenTauluTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of lisää method, of class DynaaminenTaulu.
-     */
     @Test
     public void testLisää() {
-        System.out.println("lis\u00e4\u00e4");
-        TrieSolmu o = null;
+        TrieSolmu o = new TrieSolmu('a', false, 1);
         DynaaminenTaulu instance = new DynaaminenTaulu();
         instance.lisää(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals('a', o.getKirjain());
+        assertEquals(false, o.isOnkoSana());
+        assertEquals(1, o.getRivit().get(0));
     }
 
     /**
@@ -51,11 +29,10 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testTyhjennäTaulu() {
-        System.out.println("tyhjenn\u00e4Taulu");
         DynaaminenTaulu instance = new DynaaminenTaulu();
+        instance.lisää(new TrieSolmu('a', false, 1));
         instance.tyhjennäTaulu();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, instance.onkoTyhjä());
     }
 
     /**
@@ -63,14 +40,12 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testSisältää() {
-        System.out.println("sis\u00e4lt\u00e4\u00e4");
-        TrieSolmu elem = null;
+        TrieSolmu elem = new TrieSolmu('b', true, 22);
         DynaaminenTaulu instance = new DynaaminenTaulu();
-        boolean expResult = false;
+        instance.lisää(elem);
+        boolean expResult = true;
         boolean result = instance.sisältää(elem);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -78,14 +53,13 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testHae() {
-        System.out.println("hae");
         int index = 0;
+        TrieSolmu tr = new TrieSolmu('c', false, 34);
         DynaaminenTaulu instance = new DynaaminenTaulu();
-        TrieSolmu expResult = null;
+        instance.lisää(tr);
+        TrieSolmu expResult = tr;
         TrieSolmu result = instance.hae(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -93,13 +67,10 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testOnkoTyhjä() {
-        System.out.println("onkoTyhj\u00e4");
         DynaaminenTaulu instance = new DynaaminenTaulu();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.onkoTyhjä();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -107,14 +78,13 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testPoista() {
-        System.out.println("poista");
         int index = 0;
+        TrieSolmu tr = new TrieSolmu('d', true, 33);
         DynaaminenTaulu instance = new DynaaminenTaulu();
-        TrieSolmu expResult = null;
+        instance.lisää(tr);
+        TrieSolmu expResult = tr;
         TrieSolmu result = instance.poista(index);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -122,13 +92,10 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testSize() {
-        System.out.println("size");
         DynaaminenTaulu instance = new DynaaminenTaulu();
         int expResult = 0;
         int result = instance.size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -136,11 +103,13 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testJärjestäTaulu() {
-        System.out.println("j\u00e4rjest\u00e4Taulu");
         DynaaminenTaulu instance = new DynaaminenTaulu();
+        TrieSolmu tr = new TrieSolmu('a', true, 2);
+        TrieSolmu tr2 = new TrieSolmu('b', true, 1);
+        instance.lisää(tr); instance.lisää(tr2);
         instance.järjestäTaulu();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.hae(0), tr);
+        assertEquals(instance.hae(1), tr2);
     }
 
     /**
@@ -148,13 +117,13 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testEtsi() {
-        System.out.println("etsi");
-        char c = ' ';
+        char c = 'a';
+        TrieSolmu tr = new TrieSolmu('a', false, 55);
         DynaaminenTaulu instance = new DynaaminenTaulu();
-        TrieSolmu expResult = null;
+        instance.lisää(tr);
+        TrieSolmu expResult = tr;
         TrieSolmu result = instance.etsi(c);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 }
