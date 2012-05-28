@@ -34,8 +34,10 @@ public class KomentoRiviUI{
         while(true){
             System.out.print("> ");
             in = sc.nextLine();
-            if(!in.equals(""))
+            if(!in.equals("") && !in.equals("lopeta"))
                 prosessoiKomento(in);
+            else
+                System.exit(0);
         }
     }
 

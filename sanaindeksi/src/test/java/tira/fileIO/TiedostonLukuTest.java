@@ -22,7 +22,7 @@ public class TiedostonLukuTest{
     @Test
     public void tiedostonluku(){
         String[] testi = null;
-        String testi2 = "";
+//      String testi2 = "";
         try {
             testi = tl.lueRivitTaulukkoon("kalevala.txt");
         } catch (IOException ex) {
