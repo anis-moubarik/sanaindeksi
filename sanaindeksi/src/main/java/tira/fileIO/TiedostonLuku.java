@@ -34,6 +34,12 @@ public class TiedostonLuku {
         ir.close();
         return rivit.toArray(new String[rivit.size()]);
     }
+    /**
+     * 
+     * @param tiedostonimi
+     * @return
+     * @throws IOException
+     */
     public String lueTiedostoMuistiin(String tiedostonimi) throws IOException{
         fr = new FileInputStream(tiedostonimi);
         ir = new InputStreamReader(fr, "UTF8");

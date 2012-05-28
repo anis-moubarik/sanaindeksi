@@ -22,7 +22,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     
     /**
      * 
-     * @param Lisättävä TrieSolmu
+     * @param o 
      */
     public void lisää(TrieSolmu o) {
         al.add(o);
@@ -38,7 +38,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
 
     /**
      * 
-     * @param haettava TrieSolmu
+     * @param elem 
      * @return true jos TrieSolmu löytyy dynaamisestataulusta.
      */
     public boolean sisältää(TrieSolmu elem) {
@@ -93,7 +93,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     
     /**
      * 
-     * @param etsittävä kirjain solmutaulusta.
+     * @param c 
      * @return löydetty TrieSolmu, tai jos kirjainta ei löydetä, null
      */
     public TrieSolmu etsi(char c){

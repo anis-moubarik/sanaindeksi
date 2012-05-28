@@ -7,15 +7,26 @@ import java.util.Scanner;
 import tira.fileIO.TiedostonLuku;
 import tira.trie.Trie;
 
+/**
+ * 
+ * @author Anis
+ */
 public class KomentoRiviUI{
     private Trie tr = new Trie();
     ArrayList<String> komennot = new ArrayList<String>();
     
+    /**
+     * 
+     */
     public KomentoRiviUI(){
         komennot = new ArrayList<String>();
         komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
     }
     
+    /**
+     * 
+     * @throws IOException
+     */
     public void run() throws IOException{
         String in;
         Scanner sc = new Scanner(System.in);
@@ -31,6 +42,11 @@ public class KomentoRiviUI{
         
     }
     
+    /**
+     * 
+     * @param tiedosto
+     * @throws IOException
+     */
     public void lataa(String tiedosto) throws IOException{
         TiedostonLuku tl = new TiedostonLuku();
         String[] teksti;

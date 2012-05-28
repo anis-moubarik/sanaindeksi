@@ -17,6 +17,10 @@ public class Trie{
         juuri = new TrieSolmu('\0', false, 0);
     }
     
+    /**
+     * 
+     * @param sanat
+     */
     public void lisääSanat(String[] sanat){
         int riviNumero = 1;
         for(String rivi : sanat){
@@ -33,6 +37,7 @@ public class Trie{
      * jonne lapset lisätään. Jos solmulta löytyy kyseisen kirjaimen lapsi alustetaan
      * solmu muuttuja lapsella.
      * @param sana
+     * @param rivi  
      */
     public void lisääSana(String sana, int rivi){
         sana = sana.replaceAll("[!=;,?:.)]", "");
@@ -49,6 +54,11 @@ public class Trie{
         solmu.lisääRivi(rivi);
     }
     
+    /**
+     * 
+     * @param sana
+     * @return
+     */
     public boolean etsiSana(String sana){
         sana = sana.toLowerCase();
         char[] kirjaimet = sana.toCharArray();
@@ -71,6 +81,11 @@ public class Trie{
         return true;
     }
     
+    /**
+     * 
+     * @param sana
+     * @return
+     */
     public TrieSolmu etsiSolmu(String sana){
         sana = sana.toLowerCase();
         char[] kirjaimet = sana.toCharArray();
