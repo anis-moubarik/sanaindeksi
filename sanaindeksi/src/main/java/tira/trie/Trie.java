@@ -17,6 +17,10 @@ public class Trie{
         juuri = new TrieSolmu('\0', false, 0);
     }
     
+    /**
+     * Lisätään String taulukosta kaikki sanat puuhun.
+     * @param sanat
+     */
     public void lisääSanat(String[] sanat){
         int riviNumero = 1;
         for(String rivi : sanat){
@@ -33,6 +37,7 @@ public class Trie{
      * jonne lapset lisätään. Jos solmulta löytyy kyseisen kirjaimen lapsi alustetaan
      * solmu muuttuja lapsella.
      * @param sana
+     * @param rivi  
      */
     public void lisääSana(String sana, int rivi){
         sana = sana.replaceAll("[!=;,?:.)]", "");
@@ -49,6 +54,11 @@ public class Trie{
         solmu.lisääRivi(rivi);
     }
     
+    /**
+     * Etsitään puusta parametrina annettu sana.
+     * @param sana
+     * @return
+     */
     public boolean etsiSana(String sana){
         sana = sana.toLowerCase();
         char[] kirjaimet = sana.toCharArray();
@@ -56,21 +66,30 @@ public class Trie{
         TrieSolmu solmu = juuri;
         
         int i;
+        //Etsitään solmujen lapsi taulukoista sanan kirjaimia
         for(i = 0; i < l; i++){
             if(solmu == null)
                 return false;
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
         
+        //Jos kaikki lapset on käytä läpi ja sanaa ei vielä olla löydetty palautetaan false
         if (i == l && solmu == null)
             return false;
         
+        //Jos solmu on löydetty, mutta ei ole sana palautetaan false
         if (solmu != null && !solmu.onkoSana)
             return false;
         
         return true;
     }
     
+    /**
+     * Etsitään sanalla TrieSolmua ja palautetaan se.
+     * Toimii samaan tapaan etsiSanan kanssa.
+     * @param sana
+     * @return
+     */
     public TrieSolmu etsiSolmu(String sana){
         sana = sana.toLowerCase();
         char[] kirjaimet = sana.toCharArray();

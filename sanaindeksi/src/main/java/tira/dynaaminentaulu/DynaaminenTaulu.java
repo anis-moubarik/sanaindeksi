@@ -21,8 +21,8 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     }
     
     /**
-     * 
-     * @param Lisättävä TrieSolmu
+     * Lisätään TrieSolmu dynaamiseen tauluun.
+     * @param o 
      */
     public void lisää(TrieSolmu o) {
         al.add(o);
@@ -37,16 +37,16 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     }
 
     /**
-     * 
-     * @param haettava TrieSolmu
-     * @return true jos TrieSolmu löytyy dynaamisestataulusta.
+     * Palauttaa true, jos solmu löytyy taulusta
+     * @param elem 
+     * @return true
      */
     public boolean sisältää(TrieSolmu elem) {
         return al.contains(elem);
     }
 
     /**
-     * 
+     * Haetaan indeksillä solmua, jos indeksi on liian suuri tai pieni palautetaan null.
      * @param index jolla taulusta haetaan solmu.
      * @return TrieSolmu joka on löydetty indexin kohdalta.
      */
@@ -60,25 +60,25 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     }
 
     /**
-     * 
-     * @return true jos taulu on tyhjä
+     * Palauttaa true, jos taulu on tyhjä
+     * @return true
      */
     public boolean onkoTyhjä() {
         return al.isEmpty();
     }
 
     /**
-     * 
-     * @param index poistettava solmu
-     * @return TrieSolmu joka on poistettu
+     * Poistetaan indeksissä oleva solmu ja palautetaan se.
+     * @param index 
+     * @return TrieSolmu
      */
     public TrieSolmu poista(int index) {
         return al.remove(index);
     }
     
     /**
-     * 
-     * @return taulun koko
+     * Palauttaa taulun koko
+     * @return int
      */
     public int size(){
         return al.size();
@@ -92,15 +92,22 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
     }
     
     /**
-     * 
-     * @param etsittävä kirjain solmutaulusta.
-     * @return löydetty TrieSolmu, tai jos kirjainta ei löydetä, null
+     * Etsitään kirjaimella solmu, palauttaa solmun tai nullin, jos sitä ei löydetä.
+     * @param c 
+     * @return  TrieSolmu
      */
     public TrieSolmu etsi(char c){
         int index = bSearch(c);
         return hae(index);
     }
-
+    
+    
+    /**
+     * Binäärihaku, haetaan kirjaimen ASCII koodilla taulukosta kyseinen kirjain.
+     * palautetaan kirjaimen indeksi, tai -1 jos kirjainta ei löydy.
+     * @param c
+     * @return 
+     */
     private int bSearch(char c){
         int start, end, mid;
         start = 0;
@@ -122,7 +129,14 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
 }
 
 class DtComparator implements Comparator{
-
+    
+    /**
+     * Comparator luokka TrieSolmujen lapsien sorttaamista varten.
+     * Käytetään kirjainten ASCII koodeja niitten järjestämiseen.
+     * @param t1
+     * @param t2
+     * @return 
+     */
     public int compare(Object t1, Object t2) {
         char c1 = ((TrieSolmu)t1).getKirjain();
         char c2 = ((TrieSolmu)t2).getKirjain();
