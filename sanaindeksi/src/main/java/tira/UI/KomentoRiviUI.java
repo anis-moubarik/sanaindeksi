@@ -3,9 +3,12 @@ package tira.UI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Scanner;
 import tira.fileIO.TiedostonLuku;
 import tira.trie.Trie;
+import tira.trie.TrieSolmu;
 
 /**
  * 
@@ -41,8 +44,28 @@ public class KomentoRiviUI{
         }
     }
 
-    private void etsi(){
+    private void etsi(String etsittäväSana){
+        LinkedList<Integer> kaikkiRivit = new LinkedList<Integer>();
+        TrieSolmu s = tr.etsiSolmu(etsittäväSana);
         
+        kaikkiRivit = s.getRivit();
+        
+        for(int i = 0; i < s.getLapset().size(); i++){
+            for (int j = 0; j < s.getLapset().hae(i).getRivit().size(); j++) {
+               kaikkiRivit.add((Integer)s.getLapset().hae(i).getRivit().get(j)); 
+            }
+        }
+        
+        Collections.sort(kaikkiRivit);
+        
+        System.out.print("\n\nRivit "+etsittäväSana+": ");
+        int i = 0;
+        for(int rivi : kaikkiRivit){
+            if((i%5) == 0) System.out.println("");
+            System.out.print(rivi+", ");
+            i++;
+        }
+        System.out.println("");
     }
     
     /**
@@ -79,6 +102,8 @@ public class KomentoRiviUI{
             System.out.println("Et antanut yhtään parametria.");
         }else if(komentoJaParametrit[0].equals("lataa")){
             lataa(komentoJaParametrit[1]);
+        }else if(komentoJaParametrit[0].equals("hae")){
+            etsi(komentoJaParametrit[1]);
         }
         
     }

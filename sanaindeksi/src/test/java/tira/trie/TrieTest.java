@@ -122,9 +122,8 @@ public class TrieTest {
         }
         TrieSolmu s = puu.etsiSolmu("Kullervo");
         
-        for(int rivi : s.rivit){
-            kaikkiRivit.add(rivi);
-        }
+        kaikkiRivit = s.getRivit();
+        
         for(int i = 0; i < s.lapset.size(); i++){
             for (int j = 0; j < s.lapset.hae(i).rivit.size(); j++) {
                kaikkiRivit.add(s.lapset.hae(i).rivit.get(j)); 
