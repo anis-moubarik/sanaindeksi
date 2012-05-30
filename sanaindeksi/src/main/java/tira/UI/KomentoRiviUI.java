@@ -1,6 +1,5 @@
 package tira.UI;
 
-import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -44,7 +43,7 @@ public class KomentoRiviUI{
     }
 
     /**
-     * Etsitään parametrina annettua sanaa Trie puusta.
+     * Etsitään parametrina annettua sanaa Trie puusta. Palauttaa rivinumerot ja rivin näytölle.
      * @param etsittäväSana 
      */
     private void etsi(String etsittäväSana){
