@@ -2,7 +2,10 @@ package tira.UI;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
 import tira.fileIO.TiedostonLuku;
 import tira.trie.Trie;
 import tira.trie.TrieSolmu;
