@@ -1,10 +1,7 @@
-
 package tira.trie;
+
 import java.io.IOException;
-import java.util.Collections;
-import java.util.LinkedList;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import tira.fileIO.TiedostonLuku;
@@ -30,7 +27,7 @@ public class TrieTest {
         Trie tr = new Trie();
         
         for(String sana : sanat){
-            tr.lisääSana(sana, riviNumero);
+            tr.lisääSana(sana, riviNumero, "");
             riviNumero++;
         }
         
@@ -49,7 +46,7 @@ public class TrieTest {
         int i = 0;
         long lisäysStart = System.currentTimeMillis();
         for (String sana : sanat){
-            puu.lisääSana(sana, i);
+            puu.lisääSana(sana, i, "");
             i++;
         }
         long lisäysEnd = System.currentTimeMillis();
@@ -81,7 +78,7 @@ public class TrieTest {
         for(String rivi : kalevala){
             String[] sanat = rivi.split(" ");
             for(String sana : sanat){
-                puu.lisääSana(sana, riviNumero);
+                puu.lisääSana(sana, riviNumero, rivi);
             }
             riviNumero++;
         }
@@ -105,45 +102,6 @@ public class TrieTest {
         System.out.println("End: "+lisäysEnd);
         System.out.println("---------------------------------------------------------");
         
-    }
-    
-    @Test
-    public void riviTesti() throws IOException{
-        String[] kalevala = tl.lueRivitTaulukkoon("kalevala.txt");
-        int riviNumero = 1;
-        LinkedList<Integer> kaikkiRivit = new LinkedList<Integer>();
-        
-        for(String rivi : kalevala){
-            String[] sanat = rivi.split(" ");
-            for(String sana : sanat){
-                puu.lisääSana(sana, riviNumero);
-            }
-            riviNumero++;
-        }
-        TrieSolmu s = puu.etsiSolmu("Kullervo");
-        
-        kaikkiRivit = s.getRivit();
-        
-        for(int i = 0; i < s.lapset.size(); i++){
-            for (int j = 0; j < s.lapset.hae(i).rivit.size(); j++) {
-               kaikkiRivit.add(s.lapset.hae(i).rivit.get(j)); 
-            }
-        }
-        
-        Collections.sort(kaikkiRivit);
-        
-        System.out.print("\n\nRivi testi: Kullervo rivit:");
-        int i = 0;
-        for(int rivi : kaikkiRivit){
-            if((i%5) == 0) System.out.println("");
-            System.out.print(rivi+", ");
-            i++;
-        }
-        
-        
-        
-        //Ensimmäinen
-        assertEquals(15234, (int)s.rivit.get(0));
     }
   
 }

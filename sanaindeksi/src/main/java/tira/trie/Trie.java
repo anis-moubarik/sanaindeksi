@@ -14,7 +14,7 @@ public class Trie{
      * 
      */
     public Trie(){
-        juuri = new TrieSolmu('\0', false, 0);
+        juuri = new TrieSolmu('\0', false);
     }
     
     /**
@@ -26,7 +26,7 @@ public class Trie{
         for(String rivi : sanat){
            String[] riviSanat = rivi.split(" ");
            for(String sana : riviSanat){
-               lisääSana(sana, riviNumero);
+               lisääSana(sana, riviNumero, rivi);
            }
            riviNumero++;
        }
@@ -37,21 +37,25 @@ public class Trie{
      * jonne lapset lisätään. Jos solmulta löytyy kyseisen kirjaimen lapsi alustetaan
      * solmu muuttuja lapsella.
      * @param sana
-     * @param rivi  
+     * @param rivi
+     * @param riviTeksti  
      */
-    public void lisääSana(String sana, int rivi){
+    public void lisääSana(String sana, int rivi, String riviTeksti){
         sana = sana.replaceAll("[!=;,?:.)]", "");
         sana = sana.toLowerCase();
         int l = sana.length(), i = 0;
         char[] kirjaimet = sana.toCharArray();
         TrieSolmu solmu = juuri;
         for(i = 0; i < l; i++){
-            if (solmu.lapset.etsi(kirjaimet[i]) == null)
-                solmu.lapset.lisää(new TrieSolmu(kirjaimet[i], i  == l-1 ? true : false, rivi));
+            if (solmu.lapset.etsi(kirjaimet[i]) == null){
+                TrieSolmu lisättäväSolmu = new TrieSolmu(kirjaimet[i], i == l-1 ? true : false);
+                lisättäväSolmu.rivitJaTeksti.put(rivi, riviTeksti);
+                solmu.lapset.lisää(lisättäväSolmu);
+            }
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
         solmu.setOnkoSana(true); //Varmistetaan, että Yhdyssanojen ja pitkien sanojen alisanat tunnistetaan myös sanoiksi
-        solmu.lisääRivi(rivi);
+        solmu.rivitJaTeksti.put(rivi, riviTeksti);
     }
     
     /**

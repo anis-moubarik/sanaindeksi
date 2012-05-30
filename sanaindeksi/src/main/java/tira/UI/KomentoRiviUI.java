@@ -1,11 +1,9 @@
 package tira.UI;
 
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 import tira.fileIO.TiedostonLuku;
 import tira.trie.Trie;
 import tira.trie.TrieSolmu;
@@ -17,6 +15,7 @@ import tira.trie.TrieSolmu;
 public class KomentoRiviUI{
     private Trie tr = new Trie();
     ArrayList<String> komennot = new ArrayList<String>();
+    String[] tiedostot = {};
     
     /**
      * 
@@ -39,40 +38,39 @@ public class KomentoRiviUI{
             in = sc.nextLine();
             if(!in.equals("") && !in.equals("lopeta"))
                 prosessoiKomento(in);
-            else
+            else if(in.equals("lopeta"))
                 System.exit(0);
         }
     }
 
+    /**
+     * Etsitään parametrina annettua sanaa Trie puusta.
+     * @param etsittäväSana 
+     */
     private void etsi(String etsittäväSana){
-        LinkedList<Integer> kaikkiRivit = new LinkedList<Integer>();
         TrieSolmu s = tr.etsiSolmu(etsittäväSana);
         
-        kaikkiRivit = s.getRivit();
-        
-        for(int i = 0; i < s.getLapset().size(); i++){
-            for (int j = 0; j < s.getLapset().hae(i).getRivit().size(); j++) {
-               kaikkiRivit.add((Integer)s.getLapset().hae(i).getRivit().get(j)); 
-            }
+        if(s == null){
+            System.out.println("Ei löytynyt!");
+            return;
         }
         
-        Collections.sort(kaikkiRivit);
-        
-        System.out.print("\n\nRivit "+etsittäväSana+": ");
-        int i = 0;
-        for(int rivi : kaikkiRivit){
-            if((i%5) == 0) System.out.println("");
-            System.out.print(rivi+", ");
-            i++;
+        Iterator it = s.rivitJaTeksti.entrySet().iterator();
+        int rivityhteensä = 0;
+        while(it.hasNext()){
+            Map.Entry pari = (Map.Entry)it.next();
+            System.out.println(":"+pari.getKey()+":"+pari.getValue());
+            rivityhteensä++;
         }
-        System.out.println("");
+        System.out.println("Yhteensä "+rivityhteensä+" riviä.");
+        
     }
     
     /**
      * @param tiedosto
      * @throws IOException
      */
-    public void lataa(String tiedosto) throws IOException{
+    private void lataa(String tiedosto) throws IOException{
         TiedostonLuku tl = new TiedostonLuku();
         String[] teksti;
         try {

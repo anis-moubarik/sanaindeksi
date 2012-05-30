@@ -16,12 +16,11 @@ public class DynaaminenTauluTest {
     
     @Test
     public void testLisää() {
-        TrieSolmu o = new TrieSolmu('a', false, 1);
+        TrieSolmu o = new TrieSolmu('a', false);
         DynaaminenTaulu instance = new DynaaminenTaulu();
         instance.lisää(o);
         assertEquals('a', o.getKirjain());
         assertEquals(false, o.isOnkoSana());
-        assertEquals(1, o.getRivit().get(0));
     }
 
     /**
@@ -30,7 +29,7 @@ public class DynaaminenTauluTest {
     @Test
     public void testTyhjennäTaulu() {
         DynaaminenTaulu instance = new DynaaminenTaulu();
-        instance.lisää(new TrieSolmu('a', false, 1));
+        instance.lisää(new TrieSolmu('a', false));
         instance.tyhjennäTaulu();
         assertEquals(true, instance.onkoTyhjä());
     }
@@ -40,7 +39,7 @@ public class DynaaminenTauluTest {
      */
     @Test
     public void testSisältää() {
-        TrieSolmu elem = new TrieSolmu('b', true, 22);
+        TrieSolmu elem = new TrieSolmu('b', true);
         DynaaminenTaulu instance = new DynaaminenTaulu();
         instance.lisää(elem);
         boolean expResult = true;
@@ -54,7 +53,7 @@ public class DynaaminenTauluTest {
     @Test
     public void testHae() {
         int index = 0;
-        TrieSolmu tr = new TrieSolmu('c', false, 34);
+        TrieSolmu tr = new TrieSolmu('c', false);
         DynaaminenTaulu instance = new DynaaminenTaulu();
         instance.lisää(tr);
         TrieSolmu expResult = tr;
@@ -79,7 +78,7 @@ public class DynaaminenTauluTest {
     @Test
     public void testPoista() {
         int index = 0;
-        TrieSolmu tr = new TrieSolmu('d', true, 33);
+        TrieSolmu tr = new TrieSolmu('d', true);
         DynaaminenTaulu instance = new DynaaminenTaulu();
         instance.lisää(tr);
         TrieSolmu expResult = tr;
@@ -104,8 +103,8 @@ public class DynaaminenTauluTest {
     @Test
     public void testJärjestäTaulu() {
         DynaaminenTaulu instance = new DynaaminenTaulu();
-        TrieSolmu tr = new TrieSolmu('a', true, 2);
-        TrieSolmu tr2 = new TrieSolmu('b', true, 1);
+        TrieSolmu tr = new TrieSolmu('a', true);
+        TrieSolmu tr2 = new TrieSolmu('b', true);
         instance.lisää(tr); instance.lisää(tr2);
         instance.järjestäTaulu();
         assertEquals(instance.hae(0), tr);
@@ -118,7 +117,7 @@ public class DynaaminenTauluTest {
     @Test
     public void testEtsi() {
         char c = 'a';
-        TrieSolmu tr = new TrieSolmu('a', false, 55);
+        TrieSolmu tr = new TrieSolmu('a', false);
         DynaaminenTaulu instance = new DynaaminenTaulu();
         instance.lisää(tr);
         TrieSolmu expResult = tr;
