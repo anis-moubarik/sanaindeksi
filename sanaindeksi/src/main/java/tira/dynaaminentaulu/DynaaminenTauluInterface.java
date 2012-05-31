@@ -1,18 +1,16 @@
 
 package tira.dynaaminentaulu;
 
-import tira.trie.TrieSolmu;
-
 /**
- * 
+ * Geneerinen taulu rajapinta.
  * @author moubarik
  */
-public interface DynaaminenTauluInterface {
+public interface DynaaminenTauluInterface<G> {
     /**
      * 
      * @param o
      */
-    public void lisää(TrieSolmu o);
+    public void lisää(G o);
     /**
      * 
      */
@@ -22,13 +20,13 @@ public interface DynaaminenTauluInterface {
      * @param elem
      * @return
      */
-    public boolean sisältää(TrieSolmu elem);
+    public boolean sisältää(G elem);
     /**
      * 
      * @param index
      * @return
      */
-    public TrieSolmu hae(int index);
+    public G hae(int index);
     /**
      * 
      * @return
@@ -39,7 +37,7 @@ public interface DynaaminenTauluInterface {
      * @param index
      * @return
      */
-    public TrieSolmu poista(int index);
+    public G poista(int index);
     /**
      * 
      * @return
@@ -54,5 +52,5 @@ public interface DynaaminenTauluInterface {
      * @param c
      * @return
      */
-    public TrieSolmu etsi(char c);
+    public G etsi(char c);
 }

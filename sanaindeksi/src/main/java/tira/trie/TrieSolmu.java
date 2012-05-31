@@ -15,7 +15,7 @@ public class TrieSolmu{
     /**
      * DynaaminenTaulu joka sisältää solmun lapset
      */
-    public DynaaminenTauluInterface lapset;
+    public DynaaminenTauluInterface<TrieSolmu> lapset;
     /**
      * Kertoo onko solmuun asti kuljettu reitti kokonainen sana.
      */

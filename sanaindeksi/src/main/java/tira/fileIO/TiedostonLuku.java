@@ -20,7 +20,7 @@ public class TiedostonLuku {
     BufferedReader br;
     
     /**
-     * Luetaan tiedosto String[] taulukkoon, käytetään UTF8 enkoodausta.
+     * Luetaan tiedosto/Gutenberg URL String[] taulukkoon, käytetään UTF8 enkoodausta.
      * @param tiedostonimi
      * @return String[]
      * @throws IOException
