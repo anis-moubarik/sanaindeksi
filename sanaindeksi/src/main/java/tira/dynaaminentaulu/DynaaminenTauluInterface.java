@@ -47,12 +47,6 @@ public interface DynaaminenTauluInterface<G> {
      * 
      */
     public void järjestäTaulu();
-    /**
-     * 
-     * @param c
-     * @return
-     */
-    public G etsi(char c);
     
-    public int binääriHaku(char c);
+    public G etsi(Object i);
 }
