@@ -53,4 +53,6 @@ public interface DynaaminenTauluInterface<G> {
      * @return
      */
     public G etsi(char c);
+    
+    public int binääriHaku(char c);
 }

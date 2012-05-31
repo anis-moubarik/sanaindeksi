@@ -8,7 +8,7 @@ import tira.trie.TrieSolmu;
  * 
  * @author Anis
  */
-public class DynaaminenTaulu implements DynaaminenTauluInterface{
+public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
 
     private ArrayList<TrieSolmu> al;
     private int count = 0;
@@ -97,7 +97,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
      * @return  TrieSolmu
      */
     public TrieSolmu etsi(char c){
-        int index = bSearch(c);
+        int index = binääriHaku(c);
         return hae(index);
     }
     
@@ -108,7 +108,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
      * @param c
      * @return 
      */
-    private int bSearch(char c){
+    public int binääriHaku(char c){
         int start, end, mid;
         start = 0;
         end = al.size() - 1;
