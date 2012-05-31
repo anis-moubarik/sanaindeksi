@@ -4,8 +4,10 @@
  */
 package tira.UI;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+import org.junit.Test;
 
 /**
  *
@@ -19,9 +21,19 @@ public class KomentoRiviUITest {
      */
     @Test
     public void testLataa() throws Exception {
-        String tiedosto = "kalevala.txt";
         KomentoRiviUI instance = new KomentoRiviUI();
-        instance.lataa(tiedosto);
+        instance.run();
+        String komennot = "lataa kalevala.txt\nhae Väinämöinen\nlopeta";
+        InputStream stdin = System.in;
+        try{
+            System.setIn(new ByteArrayInputStream(komennot.getBytes()));
+            Scanner sc = new Scanner(System.in);
+            System.out.println(sc.nextLine());
+        }finally{
+            System.setIn(stdin);
+        }
+
+
         
     }
 }
