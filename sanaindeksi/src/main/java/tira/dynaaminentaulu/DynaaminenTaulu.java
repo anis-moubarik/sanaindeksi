@@ -4,11 +4,14 @@ import java.util.*;
 import tira.trie.TrieSolmu;
 
 
+
+
+
 /**
  * 
  * @author Anis
  */
-public class DynaaminenTaulu implements DynaaminenTauluInterface{
+public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
 
     private ArrayList<TrieSolmu> al;
     private int count = 0;
@@ -96,8 +99,9 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
      * @param c 
      * @return  TrieSolmu
      */
-    public TrieSolmu etsi(char c){
-        int index = bSearch(c);
+    
+    public TrieSolmu etsi(Object c){
+        int index = binääriHaku((Character)c);
         return hae(index);
     }
     
@@ -108,7 +112,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
      * @param c
      * @return 
      */
-    private int bSearch(char c){
+    private int binääriHaku(char c){
         int start, end, mid;
         start = 0;
         end = al.size() - 1;
@@ -125,9 +129,8 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface{
         
         return -1;
     }
-    
-}
 
+}
 class DtComparator implements Comparator{
     
     /**

@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,23 +20,31 @@ public class TiedostonLuku {
     BufferedReader br;
     
     /**
-     * Luetaan tiedosto String[] taulukkoon, käytetään UTF8 enkoodausta.
+     * Luetaan tiedosto/Gutenberg URL String[] taulukkoon, käytetään UTF8 enkoodausta.
      * @param tiedostonimi
      * @return String[]
      * @throws IOException
      */
     public String[] lueRivitTaulukkoon(String tiedostonimi) throws IOException{
-        fr = new FileInputStream(tiedostonimi);
-        ir = new InputStreamReader(fr, "UTF8");
-        br = new BufferedReader(ir);
+        HttpURLConnection httpcon = null;
+        if(tiedostonimi.startsWith("http://") && tiedostonimi.contains("gutenberg")){
+            String id = tiedostonimi.substring(tiedostonimi.lastIndexOf("/")+1);
+            URL gutenberg = new URL("http://www.gutenberg.org/cache/epub/"+id+"/pg"+id+".txt");
+            httpcon = (HttpURLConnection) gutenberg.openConnection();
+            httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
+            br = new BufferedReader(new InputStreamReader(httpcon.getInputStream(), "UTF8"));
+        }else{        
+            fr = new FileInputStream(tiedostonimi);
+            ir = new InputStreamReader(fr, "UTF8");
+            br = new BufferedReader(ir);
+        }
         List<String> rivit = new ArrayList<String>();
-        String rivi = null;
-        
-        
+        String rivi;
+
         while((rivi = br.readLine()) != null){
             rivit.add(rivi);
         }
-        ir.close();
+        br.close();
         return rivit.toArray(new String[rivit.size()]);
     }
     /**

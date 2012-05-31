@@ -1,6 +1,7 @@
 package tira.trie;
 
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.TreeMap;
 import tira.dynaaminentaulu.DynaaminenTaulu;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
 
@@ -10,10 +11,19 @@ import tira.dynaaminentaulu.DynaaminenTauluInterface;
  */
 public class TrieSolmu{
     
-    char kirjain;
-    DynaaminenTauluInterface lapset;
-    boolean onkoSana;
-    LinkedList<Integer> rivit = new LinkedList<Integer>();
+    private char kirjain;
+    /**
+     * DynaaminenTaulu joka sisältää solmun lapset
+     */
+    public DynaaminenTauluInterface<TrieSolmu> lapset;
+    /**
+     * Kertoo onko solmuun asti kuljettu reitti kokonainen sana.
+     */
+    public boolean onkoSana;
+    /**
+     * key,map Puu jossa on rivi ja tekstit järjestyksessä.
+     */
+    public TreeMap<Integer, String> rivitJaTeksti;
     
     /**
      * 
@@ -21,11 +31,11 @@ public class TrieSolmu{
      * @param onkoSana
      * @param rivi
      */
-    public TrieSolmu(char kirjain, boolean onkoSana, int rivi){
+    public TrieSolmu(char kirjain, boolean onkoSana){
         this.kirjain = kirjain;
         this.onkoSana = onkoSana;
         this.lapset = new DynaaminenTaulu();
-        rivit.add(rivi);
+        rivitJaTeksti = new TreeMap<Integer, String>();
     }
 
     /**
@@ -74,30 +84,6 @@ public class TrieSolmu{
      */
     public void setOnkoSana(boolean onkoSana) {
         this.onkoSana = onkoSana;
-    }
-
-    /**
-     * Palautetaan linkitetty lista johon on talletettu rivit joilla sana esiintyy tiedostossa.
-     * @return LinkedList
-     */
-    public LinkedList getRivit() {
-        return rivit;
-    }
-
-    /**
-     * Asetetaan rivit solmulle.
-     * @param rivit
-     */
-    public void setRivit(LinkedList rivit) {
-        this.rivit = rivit;
-    }
-    
-    /**
-     * Lisätään yksittäinen rivi solmulle.
-     * @param rivi
-     */
-    public void lisääRivi(int rivi){
-        rivit.add(rivi);
     }
     
 }

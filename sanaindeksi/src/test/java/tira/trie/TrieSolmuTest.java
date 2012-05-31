@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package tira.trie;
 
-import java.util.LinkedList;
-import org.junit.*;
-import static org.junit.Assert.*;
-import tira.dynaaminentaulu.DynaaminenTauluInterface;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 /**
  *
@@ -20,7 +14,7 @@ public class TrieSolmuTest {
      */
     @Test
     public void testGetKirjain() {
-        TrieSolmu instance = new TrieSolmu('a', false, 1);
+        TrieSolmu instance = new TrieSolmu('a', false);
         char expResult = 'a';
         char result = instance.getKirjain();
         assertEquals(expResult, result);
@@ -32,7 +26,7 @@ public class TrieSolmuTest {
     @Test
     public void testSetKirjain() {
         char kirjain = 'b';
-        TrieSolmu instance = new TrieSolmu('d', true, 334);
+        TrieSolmu instance = new TrieSolmu('d', true);
         instance.setKirjain(kirjain);
         assertEquals(kirjain, instance.getKirjain());
     }
@@ -43,7 +37,7 @@ public class TrieSolmuTest {
      */
     @Test
     public void testIsOnkoSana() {
-        TrieSolmu instance = new TrieSolmu('c', false, 644);
+        TrieSolmu instance = new TrieSolmu('c', false);
         boolean expResult = false;
         boolean result = instance.isOnkoSana();
         assertEquals(expResult, result);
@@ -55,20 +49,8 @@ public class TrieSolmuTest {
     @Test
     public void testSetOnkoSana() {
         boolean onkoSana = false;
-        TrieSolmu instance = new TrieSolmu('k', true, 655);
+        TrieSolmu instance = new TrieSolmu('k', true);
         instance.setOnkoSana(onkoSana);
         assertEquals(false, instance.onkoSana);
-    }
-
-    /**
-     * Test of lisääRivi method, of class TrieSolmu.
-     */
-    @Test
-    public void testLisääRivi() {
-        int rivi = 0;
-        TrieSolmu instance = new TrieSolmu('o', true, 5);
-        instance.lisääRivi(rivi);
-        assertEquals(rivi, instance.getRivit().get(1));
-
     }
 }

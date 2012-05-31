@@ -3,9 +3,12 @@ package tira.UI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 import tira.fileIO.TiedostonLuku;
 import tira.trie.Trie;
+import tira.trie.TrieSolmu;
 
 /**
  * 
@@ -14,6 +17,7 @@ import tira.trie.Trie;
 public class KomentoRiviUI{
     private Trie tr = new Trie();
     ArrayList<String> komennot = new ArrayList<String>();
+    String[] tiedostot = {};
     
     /**
      * 
@@ -41,7 +45,26 @@ public class KomentoRiviUI{
         }
     }
 
-    private void etsi(){
+    /**
+     * Etsitään parametrina annettua sanaa Trie puusta. Palauttaa rivinumerot ja rivin näytölle.
+     * @param etsittäväSana 
+     */
+    private void etsi(String etsittäväSana){
+        TrieSolmu s = tr.etsiSolmu(etsittäväSana);
+        
+        if(s == null){
+            System.out.println("Ei löytynyt!");
+            return;
+        }
+        
+        Iterator it = s.rivitJaTeksti.entrySet().iterator();
+        int rivityhteensä = 0;
+        while(it.hasNext()){
+            Map.Entry pari = (Map.Entry)it.next();
+            System.out.println(":"+pari.getKey()+":"+pari.getValue());
+            rivityhteensä++;
+        }
+        System.out.println("Yhteensä "+rivityhteensä+" riviä.");
         
     }
     
@@ -49,7 +72,7 @@ public class KomentoRiviUI{
      * @param tiedosto
      * @throws IOException
      */
-    public void lataa(String tiedosto) throws IOException{
+    private void lataa(String tiedosto) throws IOException{
         TiedostonLuku tl = new TiedostonLuku();
         String[] teksti;
         try {
@@ -79,6 +102,8 @@ public class KomentoRiviUI{
             System.out.println("Et antanut yhtään parametria.");
         }else if(komentoJaParametrit[0].equals("lataa")){
             lataa(komentoJaParametrit[1]);
+        }else if(komentoJaParametrit[0].equals("hae")){
+            etsi(komentoJaParametrit[1]);
         }
         
     }

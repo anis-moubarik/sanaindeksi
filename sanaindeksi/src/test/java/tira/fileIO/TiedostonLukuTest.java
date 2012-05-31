@@ -31,13 +31,20 @@ public class TiedostonLukuTest{
         
         System.out.println(testi[0]);
         
-//        try{
-//            testi2 = tl.lueTiedostoMuistiin("kalevala.txt");
-//        }catch (IOException ex){
-//            Logger.getLogger(TiedostonLukuTest.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        System.out.println(testi2.substring(1, 50));
+    }
+    
+    @Test
+    public void URLTest(){
+        
+        String[] testi = null;
+        
+        try{
+            testi = tl.lueRivitTaulukkoon("http://www.gutenberg.org/ebooks/7000");
+        }catch (IOException ex){
+            Logger.getLogger(TiedostonLukuTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println(testi[0]);
     }
     
 }
