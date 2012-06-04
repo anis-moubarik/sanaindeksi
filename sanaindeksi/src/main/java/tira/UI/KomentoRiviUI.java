@@ -2,6 +2,7 @@ package tira.UI;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -18,11 +19,19 @@ public class KomentoRiviUI{
     private Trie tr = new Trie();
     ArrayList<String> komennot = new ArrayList<String>();
     String[] tiedostot = {};
+    private InputStream in;
     
     /**
-     * 
+     * Testauksen helpottamiseksi käytetään dependency injectionia luokan alustamisessa.
      */
-    public KomentoRiviUI(){
+    public KomentoRiviUI(InputStream in){
+        komennot = new ArrayList<String>();
+        komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
+        this.in = in;
+    }
+    
+        public KomentoRiviUI(){
+        in = System.in;
         komennot = new ArrayList<String>();
         komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
     }
@@ -33,15 +42,15 @@ public class KomentoRiviUI{
      */
     public void run() throws IOException{
         String in;
-        Scanner sc = new Scanner(System.in);
-        
-        while(true){
+        Scanner sc = new Scanner(this.in);
+        boolean run = true;
+        while(run == true){
             System.out.print("> ");
             in = sc.nextLine();
             if(!in.equals("") && !in.equals("lopeta"))
                 prosessoiKomento(in);
             else if(in.equals("lopeta"))
-                System.exit(0);
+                run = false;
         }
     }
 

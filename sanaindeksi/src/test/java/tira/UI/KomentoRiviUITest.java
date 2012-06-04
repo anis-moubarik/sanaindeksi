@@ -6,7 +6,6 @@ package tira.UI;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 import org.junit.Test;
 
 /**
@@ -19,6 +18,7 @@ public class KomentoRiviUITest {
     /**
      * Test of lataa method, of class KomentoRiviUI.
      */
+<<<<<<< HEAD
 //    @Test
 //    public void testLataa() throws Exception {
 //        KomentoRiviUI instance = new KomentoRiviUI();
@@ -36,4 +36,15 @@ public class KomentoRiviUITest {
 //
 //        
 //    }
+=======
+    @Test
+    public void testLataa() throws Exception {
+        String komennot = "lataa kalevala.txt\nhae väinämöinen\nlopeta";
+        InputStream in = new ByteArrayInputStream(komennot.getBytes());
+        KomentoRiviUI ui = new KomentoRiviUI(in);
+        
+        ui.run();        
+    }
+
+>>>>>>> 5442478e2d100e80453799b196496c4ae5add7d6
 }
