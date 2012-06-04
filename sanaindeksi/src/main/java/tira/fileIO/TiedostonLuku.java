@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
 import tira.dynaaminentaulu.DynaaminenTauluString;
 
@@ -33,10 +32,10 @@ public class TiedostonLuku {
             URL gutenberg = new URL("http://www.gutenberg.org/cache/epub/"+id+"/pg"+id+".txt");
             httpcon = (HttpURLConnection) gutenberg.openConnection();
             httpcon.addRequestProperty("User-Agent", "Mozilla/4.76");
-            br = new BufferedReader(new InputStreamReader(httpcon.getInputStream(), "UTF-8"));
+            br = new BufferedReader(new InputStreamReader(httpcon.getInputStream(), "UTF8"));
         }else{        
             fr = new FileInputStream(tiedostonimi);
-            ir = new InputStreamReader(fr, "UTF-8");
+            ir = new InputStreamReader(fr, "UTF8");
             br = new BufferedReader(ir);
         }
         DynaaminenTauluInterface<String> rivit = new DynaaminenTauluString();

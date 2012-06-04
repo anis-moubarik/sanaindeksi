@@ -72,7 +72,6 @@ public class TrieTest {
     
     @Test
     public void isoLisäysTrieen() throws IOException{
-        System.out.println(Charset.defaultCharset());
         String[] kalevala = tl.lueRivitTaulukkoon("kalevala.txt");
         int riviNumero = 1;
         
