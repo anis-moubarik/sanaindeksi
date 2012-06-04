@@ -3,7 +3,6 @@ package tira.UI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,18 +20,18 @@ public class KomentoRiviUI{
     private Trie tr = new Trie();
     DynaaminenTauluInterface<String> komennot = new DynaaminenTauluString();
     String[] tiedostot = {};
-    private InputStream in;
+    //private InputStream in;
     
     /**
      * Testauksen helpottamiseksi käytetään dependency injectionia luokan alustamisessa.
      */
-    public KomentoRiviUI(InputStream in){
-        komennot.lisää("hae"); komennot.lisää("lataa"); komennot.lisää("lopeta");
-        this.in = in;
-    }
+//    public KomentoRiviUI(InputStream in){
+//        komennot.lisää("hae"); komennot.lisää("lataa"); komennot.lisää("lopeta");
+//        this.in = in;
+//    }
     
         public KomentoRiviUI(){
-        in = System.in;
+        //this.in = System.in;
         komennot.lisää("hae"); komennot.lisää("lataa"); komennot.lisää("lopeta");
     }
     
@@ -41,15 +40,16 @@ public class KomentoRiviUI{
      * @throws IOException
      */
     public void run() throws IOException{
-        String in;
-        Scanner sc = new Scanner(this.in);
+        String s;
+        Scanner sc = new Scanner(System.in);
         boolean run = true;
         while(run == true){
             System.out.print("> ");
-            in = sc.nextLine();
-            if(!in.equals("") && !in.equals("lopeta"))
-                prosessoiKomento(in);
-            else if(in.equals("lopeta"))
+            s = sc.nextLine();
+            System.out.println(s);
+            if(!s.equals("") && !s.equals("lopeta"))
+                prosessoiKomento(s);
+            else if(s.equals("lopeta"))
                 run = false;
         }
     }

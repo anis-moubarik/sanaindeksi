@@ -1,3 +1,5 @@
 target/
 !target/site/cobertura/coverage.xml
 !target/*.jar
+/testi/nbproject/private/
+/testi/build/

@@ -1,6 +1,5 @@
 package tira.trie;
 
-import java.util.HashMap;
 import java.util.TreeMap;
 import tira.dynaaminentaulu.DynaaminenTaulu;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
