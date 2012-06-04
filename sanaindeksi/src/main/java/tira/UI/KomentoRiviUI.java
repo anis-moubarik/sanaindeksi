@@ -31,7 +31,7 @@ public class KomentoRiviUI{
     }
     
         public KomentoRiviUI(){
-        in = System.in;
+        this(System.in);
         komennot = new ArrayList<String>();
         komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
     }
