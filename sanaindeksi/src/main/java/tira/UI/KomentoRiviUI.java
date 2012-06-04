@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import tira.dynaaminentaulu.DynaaminenTauluInterface;
+import tira.dynaaminentaulu.DynaaminenTauluString;
 import tira.fileIO.TiedostonLuku;
 import tira.trie.Trie;
 import tira.trie.TrieSolmu;
@@ -17,7 +19,7 @@ import tira.trie.TrieSolmu;
  */
 public class KomentoRiviUI{
     private Trie tr = new Trie();
-    ArrayList<String> komennot = new ArrayList<String>();
+    DynaaminenTauluInterface<String> komennot = new DynaaminenTauluString();
     String[] tiedostot = {};
     private InputStream in;
     
@@ -25,15 +27,13 @@ public class KomentoRiviUI{
      * Testauksen helpottamiseksi käytetään dependency injectionia luokan alustamisessa.
      */
     public KomentoRiviUI(InputStream in){
-        komennot = new ArrayList<String>();
-        komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
+        komennot.lisää("hae"); komennot.lisää("lataa"); komennot.lisää("lopeta");
         this.in = in;
     }
     
         public KomentoRiviUI(){
         in = System.in;
-        komennot = new ArrayList<String>();
-        komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
+        komennot.lisää("hae"); komennot.lisää("lataa"); komennot.lisää("lopeta");
     }
     
     /**
@@ -103,7 +103,7 @@ public class KomentoRiviUI{
      */
     private void prosessoiKomento(String in) throws IOException {
         String[] komentoJaParametrit = in.split(" ");
-        if(!komennot.contains(komentoJaParametrit[0])){
+        if(!komennot.sisältää(komentoJaParametrit[0])){
             System.out.println("Komentoa: \""+komentoJaParametrit[0]+"\" ei tunnistettu.");
         }else if(komentoJaParametrit.length > 2){
             System.out.println("Liikaa parametreja.");

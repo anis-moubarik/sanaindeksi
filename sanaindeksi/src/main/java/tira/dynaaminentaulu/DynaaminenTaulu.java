@@ -130,6 +130,10 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
         return -1;
     }
 
+    public Object[] toArray(Object[] o) {
+        return al.toArray(o);
+    }
+
 }
 class DtComparator implements Comparator{
     

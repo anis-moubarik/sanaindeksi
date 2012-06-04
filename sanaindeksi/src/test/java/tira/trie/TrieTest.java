@@ -1,6 +1,7 @@
 package tira.trie;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -71,6 +72,7 @@ public class TrieTest {
     
     @Test
     public void isoLisäysTrieen() throws IOException{
+        System.out.println(Charset.defaultCharset());
         String[] kalevala = tl.lueRivitTaulukkoon("kalevala.txt");
         int riviNumero = 1;
         
