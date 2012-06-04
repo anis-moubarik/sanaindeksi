@@ -1,6 +1,7 @@
 package tira.trie;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;

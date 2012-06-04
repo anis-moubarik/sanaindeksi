@@ -49,4 +49,6 @@ public interface DynaaminenTauluInterface<G> {
     public void järjestäTaulu();
     
     public G etsi(Object i);
+    
+    public Object[] toArray(Object[] o);
 }

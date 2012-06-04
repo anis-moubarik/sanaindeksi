@@ -3,10 +3,11 @@ package tira.UI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import tira.dynaaminentaulu.DynaaminenTauluInterface;
+import tira.dynaaminentaulu.DynaaminenTauluString;
 import tira.fileIO.TiedostonLuku;
 import tira.trie.Trie;
 import tira.trie.TrieSolmu;
@@ -17,7 +18,7 @@ import tira.trie.TrieSolmu;
  */
 public class KomentoRiviUI{
     private Trie tr = new Trie();
-    ArrayList<String> komennot = new ArrayList<String>();
+    DynaaminenTauluInterface<String> komennot = new DynaaminenTauluString();
     String[] tiedostot = {};
     private InputStream in;
     
@@ -25,31 +26,29 @@ public class KomentoRiviUI{
      * Testauksen helpottamiseksi käytetään dependency injectionia luokan alustamisessa.
      */
     public KomentoRiviUI(InputStream in){
-        komennot = new ArrayList<String>();
-        komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
+        komennot.lisää("hae"); komennot.lisää("lataa"); komennot.lisää("lopeta");
         this.in = in;
     }
     
         public KomentoRiviUI(){
-        this(System.in);
-        komennot = new ArrayList<String>();
-        komennot.add("hae"); komennot.add("lataa"); komennot.add("lopeta");
-    }
+            this(System.in);
+        }
     
     /**
      * 
      * @throws IOException
      */
     public void run() throws IOException{
-        String in;
-        Scanner sc = new Scanner(this.in);
+        String s;
+        Scanner sc = new Scanner(in);
         boolean run = true;
         while(run == true){
             System.out.print("> ");
-            in = sc.nextLine();
-            if(!in.equals("") && !in.equals("lopeta"))
-                prosessoiKomento(in);
-            else if(in.equals("lopeta"))
+            s = sc.nextLine();
+            System.out.println(s);
+            if(!s.equals("") && !s.equals("lopeta"))
+                prosessoiKomento(s);
+            else if(s.equals("lopeta"))
                 run = false;
         }
     }
@@ -103,7 +102,7 @@ public class KomentoRiviUI{
      */
     private void prosessoiKomento(String in) throws IOException {
         String[] komentoJaParametrit = in.split(" ");
-        if(!komennot.contains(komentoJaParametrit[0])){
+        if(!komennot.sisältää(komentoJaParametrit[0])){
             System.out.println("Komentoa: \""+komentoJaParametrit[0]+"\" ei tunnistettu.");
         }else if(komentoJaParametrit.length > 2){
             System.out.println("Liikaa parametreja.");

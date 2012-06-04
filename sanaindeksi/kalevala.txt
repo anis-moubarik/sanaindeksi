@@ -1,4 +1,4 @@
-﻿The Project Gutenberg EBook of The Kalevala, by Elias Lönnrot
+The Project Gutenberg EBook of The Kalevala, by Elias Lönnrot
 
 This eBook is for the use of anyone anywhere at no cost and with
 almost no restrictions whatsoever.  You may copy it, give it away or
@@ -1231,7 +1231,6 @@ Kommentit ja korjaukset:
   rasvalampi lautasilla."
   Lauloi nuoren Joukahaisen,
   lauloi siitäki syvemmä.
-
   Sanoi nuori Joukahainen:
   "Oi on vanha Väinämöinen!
   Pyörrytä pyhät sanasi,
@@ -1533,7 +1532,6 @@ Kommentit ja korjaukset:
   lausui vanhin lapsellensa:
   "Elä itke, tyttäreni,
   nuorna saamani, nureksi!
-
   Syö vuosi suloa voita:
   tulet muita vuolahampi;
   toinen syö sianlihoa:
@@ -1544,7 +1542,6 @@ Kommentit ja korjaukset:
   - aukaise parahin aitta - !
   Siell' on arkku arkun päällä,
   lipas lippahan lomassa.
-
   Aukaise parahin arkku,
   kansi kirjo kimmahuta:
   siin' on kuusi kultavyötä,
@@ -2153,7 +2150,6 @@ Kommentit ja korjaukset:
   Oisiko emo elossa,
   vanhempani valvehella,
   sepä saattaisi sanoa,
-
   miten pystössä pysyä,
   murehisin murtumatta,
   huolihin katoamatta
@@ -8320,7 +8316,6 @@ Kommentit ja korjaukset:
   eessä julkisen Jumalan,
   alla kasvon kaikkivallan,
   tullaksesi toivottelit mulle,
-
   miehelle hyvälle,
   ikuiseksi ystäväksi,
   kainaloiseksi kanaksi:
@@ -14132,7 +14127,6 @@ Kommentit ja korjaukset:
   tulisit tuhansin pursin."
   Siitä lieto Lemminkäinen
   veälti venehen maalle,
-
   purren puisille teloille.
   Itse tuon sanoiksi virkki:
   "Onko saarella tiloa,

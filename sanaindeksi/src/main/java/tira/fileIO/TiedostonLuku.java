@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import tira.dynaaminentaulu.DynaaminenTauluInterface;
+import tira.dynaaminentaulu.DynaaminenTauluString;
 
 /**
  *
@@ -26,7 +26,7 @@ public class TiedostonLuku {
      * @throws IOException
      */
     public String[] lueRivitTaulukkoon(String tiedostonimi) throws IOException{
-        HttpURLConnection httpcon = null;
+        HttpURLConnection httpcon;
         if(tiedostonimi.startsWith("http://") && tiedostonimi.contains("gutenberg")){
             String id = tiedostonimi.substring(tiedostonimi.lastIndexOf("/")+1);
             URL gutenberg = new URL("http://www.gutenberg.org/cache/epub/"+id+"/pg"+id+".txt");
@@ -38,14 +38,14 @@ public class TiedostonLuku {
             ir = new InputStreamReader(fr, "UTF8");
             br = new BufferedReader(ir);
         }
-        List<String> rivit = new ArrayList<String>();
+        DynaaminenTauluInterface<String> rivit = new DynaaminenTauluString();
         String rivi;
 
         while((rivi = br.readLine()) != null){
-            rivit.add(rivi);
+            rivit.lisää(rivi);
         }
         br.close();
-        return rivit.toArray(new String[rivit.size()]);
+        return (String[]) rivit.toArray(new String[rivit.size()]);
     }
     /**
      * @param tiedostonimi
