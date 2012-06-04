@@ -6,7 +6,6 @@ package tira.UI;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
@@ -25,9 +24,7 @@ public class KomentoRiviUITest {
         InputStream in = new ByteArrayInputStream(komennot.getBytes());
         KomentoRiviUI ui = new KomentoRiviUI(in);
         
-        ui.run();
-        assertEquals(true, true);
-        
+        ui.run();        
     }
 
 }
