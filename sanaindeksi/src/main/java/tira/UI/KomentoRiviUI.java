@@ -69,7 +69,7 @@ public class KomentoRiviUI{
         int rivityhteensä = 0;
         while(it.hasNext()){
             Map.Entry pari = (Map.Entry)it.next();
-            System.out.println(":"+pari.getKey()+":"+pari.getValue());
+            System.out.println(pari.getValue().toString().substring(pari.getValue().toString().lastIndexOf(" ")) +":"+pari.getKey()+":"+pari.getValue());
             rivityhteensä++;
         }
         System.out.println("Yhteensä "+rivityhteensä+" riviä.");
@@ -91,7 +91,7 @@ public class KomentoRiviUI{
         }
         System.out.println("Ladataan tiedostoa...");
         long start = System.currentTimeMillis();
-        tr.lisääSanat(teksti);
+        tr.lisääSanat(tiedosto, teksti);
         long end = System.currentTimeMillis();
         System.out.println("Ladattu. Aikaa meni "+(end-start)+"ms");
     }

@@ -28,7 +28,7 @@ public class TrieTest {
         Trie tr = new Trie();
         
         for(String sana : sanat){
-            tr.lisääSana(sana, riviNumero, "");
+            tr.lisääSana("", sana, riviNumero, "");
             riviNumero++;
         }
         
@@ -47,7 +47,7 @@ public class TrieTest {
         int i = 0;
         long lisäysStart = System.currentTimeMillis();
         for (String sana : sanat){
-            puu.lisääSana(sana, i, "");
+            puu.lisääSana("", sana, i, "");
             i++;
         }
         long lisäysEnd = System.currentTimeMillis();
@@ -79,7 +79,7 @@ public class TrieTest {
         for(String rivi : kalevala){
             String[] sanat = rivi.split(" ");
             for(String sana : sanat){
-                puu.lisääSana(sana, riviNumero, rivi);
+                puu.lisääSana("kalevala.txt", sana, riviNumero, rivi);
             }
             riviNumero++;
         }

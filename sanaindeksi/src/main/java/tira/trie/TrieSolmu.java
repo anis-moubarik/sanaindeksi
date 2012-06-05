@@ -3,6 +3,7 @@ package tira.trie;
 import java.util.TreeMap;
 import tira.dynaaminentaulu.DynaaminenTaulu;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
+import tira.dynaaminentaulu.DynaaminenTauluString;
 
 /**
  * 
@@ -20,9 +21,11 @@ public class TrieSolmu{
      */
     public boolean onkoSana;
     /**
-     * key,map Puu jossa on rivi ja tekstit järjestyksessä.
+     * key,value Puu jossa on rivi ja tekstit järjestyksessä.
      */
     public TreeMap<Integer, String> rivitJaTeksti;
+    
+    public DynaaminenTauluInterface<String> tiedostot;
     
     /**
      * 
@@ -34,7 +37,7 @@ public class TrieSolmu{
         this.kirjain = kirjain;
         this.onkoSana = onkoSana;
         this.lapset = new DynaaminenTaulu();
-        rivitJaTeksti = new TreeMap<Integer, String>();
+        this.rivitJaTeksti = new TreeMap<Integer, String>();
     }
 
     /**

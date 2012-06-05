@@ -4,10 +4,9 @@
  */
 package tira.dynaaminentaulu;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import mergesort.Mergesort;
+import tira.mergesort.Mergesort;
+import tira.mergesort.MergesortInterface;
 
 /**
  *
@@ -17,7 +16,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
     
     //private ArrayList<String> al = new ArrayList<String>();
     
-    private Mergesort ms;
+    private MergesortInterface ms;
     
     private int lkm;
     private String alkiot[];
@@ -33,6 +32,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
         alkiot = new String[50];
     }
     
+    @Override
     public void lisää(Object o) {
         if(lkm > alkiot.length-1)
         {
@@ -48,10 +48,12 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
         lkm++;
     }
 
+    @Override
     public void tyhjennäTaulu() {
         alkiot = new String[0];
     }
 
+    @Override
     public boolean sisältää(Object elem) {
         for (int i = 0; i < lkm; i++) {
             if(alkiot[i].equals((String)elem))
@@ -59,15 +61,18 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
         }
         return false;
     }
-
+    
+    @Override
     public Object hae(int index) {
         return alkiot[index];
     }
 
+    @Override
     public boolean onkoTyhjä() {
         return (lkm == 0) ? true : false;
     }
 
+    @Override
     public Object poista(int index) {
         String poistettava;
         if(index == lkm-1)
@@ -85,15 +90,18 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
         return poistettava;
     }
 
+    @Override
     public int size() {
         return lkm;
     }
 
+    @Override
     public void järjestäTaulu() {
         //Collections.sort(al);
         ms.sort(alkiot);
     }
 
+    @Override
     public Object etsi(Object i) {
         int index = binääriHaku((String) i);
         return hae(index);
@@ -117,6 +125,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
         return -1;
     }
 
+    @Override
     public Object[] toArray(Object[] o) {
         return Arrays.copyOfRange(alkiot, 0, lkm);
     }

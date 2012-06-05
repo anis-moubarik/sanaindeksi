@@ -21,12 +21,12 @@ public class Trie{
      * Lisätään String taulukosta kaikki sanat puuhun.
      * @param sanat
      */
-    public void lisääSanat(String[] sanat){
+    public void lisääSanat(String tiedosto, String[] sanat){
         int riviNumero = 1;
         for(String rivi : sanat){
            String[] riviSanat = rivi.split(" ");
            for(String sana : riviSanat){
-               lisääSana(sana, riviNumero, rivi);
+               lisääSana(tiedosto, sana, riviNumero, rivi);
            }
            riviNumero++;
        }
@@ -40,7 +40,7 @@ public class Trie{
      * @param rivi
      * @param riviTeksti  
      */
-    public void lisääSana(String sana, int rivi, String riviTeksti){
+    public void lisääSana(String tiedosto, String sana, int rivi, String riviTeksti){
         sana = sana.replaceAll("[!=;,?:.)]", "");
         sana = sana.toLowerCase();
         int l = sana.length(), i = 0;
@@ -49,13 +49,13 @@ public class Trie{
         for(i = 0; i < l; i++){
             if (solmu.lapset.etsi(kirjaimet[i]) == null){
                 TrieSolmu lisättäväSolmu = new TrieSolmu(kirjaimet[i], i == l-1 ? true : false);
-                lisättäväSolmu.rivitJaTeksti.put(rivi, riviTeksti);
+                lisättäväSolmu.rivitJaTeksti.put(rivi, riviTeksti+" "+tiedosto);
                 solmu.lapset.lisää(lisättäväSolmu);
             }
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
         solmu.setOnkoSana(true); //Varmistetaan, että Yhdyssanojen ja pitkien sanojen alisanat tunnistetaan myös sanoiksi
-        solmu.rivitJaTeksti.put(rivi, riviTeksti);
+        solmu.rivitJaTeksti.put(rivi, riviTeksti+" "+tiedosto);
     }
     
     /**
