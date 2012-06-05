@@ -1,5 +1,6 @@
 package tira.trie;
 
+import java.util.HashMap;
 import java.util.TreeMap;
 import tira.dynaaminentaulu.DynaaminenTaulu;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
@@ -23,9 +24,20 @@ public class TrieSolmu{
     /**
      * key,value Puu jossa on rivi ja tekstit järjestyksessä.
      */
-    public TreeMap<Integer, String> rivitJaTeksti;
+    private HashMap<String, DynaaminenTauluInterface<Integer>> tiedostoJaRivinumerot;
+
     
-    public DynaaminenTauluInterface<String> tiedostot;
+    public void lisääTiedostoJaRivinumero(String s, int i){
+        DynaaminenTauluInterface e = tiedostoJaRivinumerot.get(s);
+        if(e == null)
+            e = new DynaaminenTauluString();
+        e.lisää(e);
+        tiedostoJaRivinumerot.put(s, e);
+    }
+    
+    public HashMap getTiedostoJaRivinumerot(){
+        return tiedostoJaRivinumerot;
+    }
     
     /**
      * 
@@ -37,7 +49,7 @@ public class TrieSolmu{
         this.kirjain = kirjain;
         this.onkoSana = onkoSana;
         this.lapset = new DynaaminenTaulu();
-        this.rivitJaTeksti = new TreeMap<Integer, String>();
+        this.tiedostoJaRivinumerot = new HashMap<String, DynaaminenTauluInterface<Integer>>();
     }
 
     /**

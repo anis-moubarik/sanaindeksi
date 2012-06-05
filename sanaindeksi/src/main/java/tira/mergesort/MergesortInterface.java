@@ -8,6 +8,6 @@ package tira.mergesort;
  *
  * @author moubarik
  */
-public interface MergesortInterface {
-    public void sort(Comparable[] s);
+public interface MergesortInterface<G> {
+    public void sort(G[] s);
 }

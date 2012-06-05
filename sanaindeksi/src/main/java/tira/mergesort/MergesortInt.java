@@ -8,17 +8,21 @@ package tira.mergesort;
  *
  * @author moubarik
  */
-public class Mergesort implements MergesortInterface{
-    
-    private int lkm;
-    
-    @Override
-    public void sort(Object[] s){
-        String [] tmp = new String[s.length];
-        mergesort((String[])s, tmp, 0, s.length-1);
-    }
+public class MergesortInt implements MergesortInterface{
 
-    private void mergesort(String[] a, String[] tmp, int vas, int oik) {
+    @Override
+    public void sort(Object[] s) {
+        int [] tmp = new int[s.length];
+        int[] luvut = {};
+        int i = 0;
+        for(Object o : s){
+            luvut[i] = (Integer) o;
+            i++;
+        }
+        mergesort(luvut, tmp, 0, s.length-1);
+    }
+    
+    private void mergesort(int[] a, int[] tmp, int vas, int oik) {
         if(vas < oik)
         {
             int mid = (vas + oik) / 2;
@@ -31,7 +35,7 @@ public class Mergesort implements MergesortInterface{
         }
     }
 
-    private void merge(String[] a, String[] tmp, int vasP, int oikP, int oikLoppu) {
+    private void merge(int[] a, int[] tmp, int vasP, int oikP, int oikLoppu) {
         
         int vasLoppu = oikP -1;
         int tmpP = vasP;
@@ -39,7 +43,7 @@ public class Mergesort implements MergesortInterface{
         
         while(vasP <= vasLoppu && oikP <= oikLoppu)
         {
-            if(a[vasP].compareToIgnoreCase(a[oikP]) <= 0)
+            if(a[vasP] < a[oikP])
                 tmp[tmpP++] = a[vasP++];
             else
                 tmp[tmpP++] = a[oikP++];
@@ -60,5 +64,5 @@ public class Mergesort implements MergesortInterface{
         }
     }
 
-
+    
 }

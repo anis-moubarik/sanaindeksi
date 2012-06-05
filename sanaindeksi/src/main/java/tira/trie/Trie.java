@@ -1,5 +1,8 @@
 package tira.trie;
 
+import java.util.HashMap;
+import tira.dynaaminentaulu.DynaaminenTauluInterface;
+
 
 
 /**
@@ -9,12 +12,14 @@ package tira.trie;
 public class Trie{
     
     private TrieSolmu juuri;
+    public HashMap<String, String[]> tiedostoJaRivit;
     
     /**
      * 
      */
     public Trie(){
         juuri = new TrieSolmu('\0', false);
+        tiedostoJaRivit = new HashMap<String, String[]>();
     }
     
     /**
@@ -23,6 +28,7 @@ public class Trie{
      */
     public void lisääSanat(String tiedosto, String[] sanat){
         int riviNumero = 1;
+        tiedostoJaRivit.put(tiedosto, sanat);
         for(String rivi : sanat){
            String[] riviSanat = rivi.split(" ");
            for(String sana : riviSanat){
@@ -49,13 +55,13 @@ public class Trie{
         for(i = 0; i < l; i++){
             if (solmu.lapset.etsi(kirjaimet[i]) == null){
                 TrieSolmu lisättäväSolmu = new TrieSolmu(kirjaimet[i], i == l-1 ? true : false);
-                lisättäväSolmu.rivitJaTeksti.put(rivi, riviTeksti+" "+tiedosto);
+                lisättäväSolmu.lisääTiedostoJaRivinumero(tiedosto, rivi);
                 solmu.lapset.lisää(lisättäväSolmu);
             }
             solmu = solmu.lapset.etsi(kirjaimet[i]);
         }
         solmu.setOnkoSana(true); //Varmistetaan, että Yhdyssanojen ja pitkien sanojen alisanat tunnistetaan myös sanoiksi
-        solmu.rivitJaTeksti.put(rivi, riviTeksti+" "+tiedosto);
+        solmu.lisääTiedostoJaRivinumero(tiedosto, rivi);
     }
     
     /**

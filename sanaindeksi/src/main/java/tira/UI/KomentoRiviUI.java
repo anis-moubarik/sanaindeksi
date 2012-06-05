@@ -3,9 +3,12 @@ package tira.UI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import tira.dynaaminentaulu.DynaaminenTaulu;
+import tira.dynaaminentaulu.DynaaminenTauluInt;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
 import tira.dynaaminentaulu.DynaaminenTauluString;
 import tira.fileIO.TiedostonLuku;
@@ -58,21 +61,27 @@ public class KomentoRiviUI{
      * @param etsittäväSana 
      */
     private void etsi(String etsittäväSana){
+        long alku = System.currentTimeMillis();
         TrieSolmu s = tr.etsiSolmu(etsittäväSana);
+        long loppu = System.currentTimeMillis();
         
         if(s == null){
             System.out.println("Ei löytynyt!");
             return;
         }
-        
-        Iterator it = s.rivitJaTeksti.entrySet().iterator();
         int rivityhteensä = 0;
+        DynaaminenTauluInterface<Integer> dt;
+        Iterator it = s.getTiedostoJaRivinumerot().entrySet().iterator();
         while(it.hasNext()){
-            Map.Entry pari = (Map.Entry)it.next();
-            System.out.println(pari.getValue().toString().substring(pari.getValue().toString().lastIndexOf(" ")) +":"+pari.getKey()+":"+pari.getValue());
-            rivityhteensä++;
+            Map.Entry pairs = (Map.Entry) it.next();
+            dt = (DynaaminenTauluInt) pairs.getValue();
+            for(int i = 0; i < dt.size()-1; i++){
+                String[] rivit = tr.tiedostoJaRivit.get((String)pairs.getKey());
+                System.out.println(rivit[dt.hae(i)]);
+            }
         }
-        System.out.println("Yhteensä "+rivityhteensä+" riviä.");
+        
+        System.out.println("Haussa kesti: "+(loppu-alku)+"ms. Yhteensä "+rivityhteensä+" riviä.");
         
     }
     
