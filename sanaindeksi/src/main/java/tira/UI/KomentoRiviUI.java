@@ -27,13 +27,17 @@ public class KomentoRiviUI{
     
     /**
      * Testauksen helpottamiseksi käytetään dependency injectionia luokan alustamisessa.
+     * @param in 
      */
     public KomentoRiviUI(InputStream in){
         komennot.lisää("hae"); komennot.lisää("lataa"); komennot.lisää("lopeta");
         this.in = in;
     }
     
-        public KomentoRiviUI(){
+    /**
+     * 
+     */
+    public KomentoRiviUI(){
             this(System.in);
         }
     
@@ -48,7 +52,6 @@ public class KomentoRiviUI{
         while(run == true){
             System.out.print("> ");
             s = sc.nextLine();
-            System.out.println(s);
             if(!s.equals("") && !s.equals("lopeta"))
                 prosessoiKomento(s);
             else if(s.equals("lopeta"))
@@ -85,6 +88,17 @@ public class KomentoRiviUI{
         
         System.out.println("Haussa kesti: "+(loppu-alku)+"ms. Yhteensä "+rivityhteensä+" riviä.");
         
+    }
+    
+    /**
+     * 
+     * @param tiedostot
+     * @throws IOException
+     */
+    public void lataaParametrit(String[] tiedostot) throws IOException{
+        for(String tiedosto : tiedostot){
+            lataa(tiedosto);
+        }
     }
     
     /**

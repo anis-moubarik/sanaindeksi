@@ -10,7 +10,12 @@ import tira.UI.KomentoRiviUI;
 public class Main {
     public static void main(String[] args) throws IOException {
         KomentoRiviUI ui = new KomentoRiviUI();
-        ui.run();
+        if(args.length > 0){
+            ui.lataaParametrit(args);
+            ui.run();
+        }else{
+            ui.run();
+        }
     }
 
 }
