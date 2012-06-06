@@ -17,6 +17,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
 
     private MergesortInterface<TrieSolmu> ms;
     
+    
     private int lkm;
     private TrieSolmu alkiot[];
     
@@ -24,10 +25,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * 
      */
     public DynaaminenTaulu(){
-        lkm = 0;
-        alkiot = new TrieSolmu[50];
-        ms = new MergesortTS();
-        
+        this(10);     
     }
     
     public DynaaminenTaulu(int koko){
@@ -44,7 +42,10 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
     public void lisää(TrieSolmu o) {
         if(lkm > alkiot.length - 1){
             TrieSolmu[] apu = alkiot;
-            alkiot = Arrays.copyOf(apu, lkm*2);
+            alkiot = new TrieSolmu[lkm*2];
+            for (int i = 0; i < apu.length; i++) {
+                alkiot[i] = apu[i];
+            }
             alkiot[lkm] = o;
         }
         else
@@ -70,7 +71,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      */
     @Override
     public boolean sisältää(TrieSolmu elem) {
-        for(int i = 0; i < alkiot.length; i++){
+        for(int i = 0; i < lkm; i++){
             if(elem.equals(alkiot[i])){
                 return true;
             }
@@ -85,9 +86,9 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      */
     @Override
     public TrieSolmu hae(int index) {
-        if(index < 0)
+        if(index > lkm)
             return null;
-        else if (index > lkm)
+        else if(index < 0)
             return null;
         else
             return alkiot[index];
@@ -163,6 +164,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * @return 
      */
     private int binääriHaku(char c){
+        //järjestäTaulu();
         int start, end, mid;
         start = 0;
         end = lkm - 1;

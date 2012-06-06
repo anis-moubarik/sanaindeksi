@@ -32,12 +32,10 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface<String>{
     }
     
     /**
-     * Alustetaan dynaaminen taulu aluksi 50 alkion kokoiseksi.
+     * Alustetaan dynaaminen taulu aluksi 10 alkion kokoiseksi.
      */
     public DynaaminenTauluString(){
-        lkm = 0;
-        alkiot = new String[50];
-        ms = new Mergesort();
+        this(10);
     }
     
     @Override
@@ -51,10 +49,9 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface<String>{
         }
         else
         {
-        alkiot[lkm] = (String) o;
+        alkiot[lkm] = o;
         }
         lkm++;
-        //järjestäTaulu();
     }
 
     @Override
@@ -124,6 +121,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface<String>{
     }
 
     private int binääriHaku(String c) {
+        järjestäTaulu();
         int start, end, mid;
         start = 0;
         end = alkiot.length - 1;

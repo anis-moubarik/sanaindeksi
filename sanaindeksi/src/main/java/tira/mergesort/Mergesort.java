@@ -11,17 +11,15 @@ import java.util.Arrays;
  * @author moubarik
  */
 public class Mergesort implements MergesortInterface<String>{
-    
-    
+        
     /**
      * 
      * @param s
      */
     @Override
     public void sort(String[] s, int lkm){
-        s = Arrays.copyOf(s, lkm);
         String [] tmp = new String[s.length];
-        mergesort(s, tmp, 0, s.length-1);
+        mergesort(s, tmp, 0, lkm-1);
     }
 
     private void mergesort(String[] a, String[] tmp, int vas, int oik) {

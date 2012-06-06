@@ -1,7 +1,6 @@
 package tira.trie;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,23 +11,23 @@ public class TrieTest {
     
     
     //Alustavat testi vielä toistaiseksi mainissa.
-    Trie puu;
+    Trie puu, tr;
     TiedostonLuku tl;
     
     @Before
     public void setUp(){
         puu = new Trie();
         tl = new TiedostonLuku();
+        tr = new Trie();
     }
     
     @Test
     public void aliSanat(){
         String[] sanat = {"Runoilija", "Runo", "Jalkapallo", "Jalka", "pallo"};
-        int riviNumero = 0;
-        Trie tr = new Trie();
-        
+        int riviNumero = 0;        
         for(String sana : sanat){
             tr.lisääSana("", sana, riviNumero, "");
+            System.out.println(sana);
             riviNumero++;
         }
         

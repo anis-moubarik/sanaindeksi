@@ -45,7 +45,6 @@ public class TiedostonLuku {
             rivit.lisää(rivi);
         }
         br.close();
-        rivit.järjestäTaulu();
         return (String[]) rivit.toArray(new String[rivit.size()]);
     }
     /**

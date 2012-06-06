@@ -4,11 +4,9 @@
  */
 package tira.mergesort;
 
-import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 import tira.trie.TrieSolmu;
 
 /**

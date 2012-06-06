@@ -15,9 +15,10 @@ public class MergesortTS implements MergesortInterface<TrieSolmu>{
 
     @Override
     public void sort(TrieSolmu[] s, int lkm) {
-        s = Arrays.copyOf(s, lkm);
+        //s = Arrays.copyOf(s, lkm);
         TrieSolmu[] tmp = new TrieSolmu[s.length];
-        mergesort(s, tmp, 0, s.length-1);    }
+        mergesort(s, tmp, 0, lkm-1);    
+    }
 
     private void mergesort(TrieSolmu[] a, TrieSolmu[] tmp, int vas, int oik) {
         if(vas < oik)

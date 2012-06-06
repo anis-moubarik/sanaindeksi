@@ -4,23 +4,20 @@
  */
 package tira.mergesort;
 
-import java.util.Arrays;
-
 /**
  *
  * @author moubarik
  */
 public class MergesortInt implements MergesortInterface<Integer>{
-
+    
     /**
      * 
      * @param s
      */
     @Override
     public void sort(Integer[] s, int lkm) {
-        s = Arrays.copyOf(s, lkm);
         int[] tmp = new int[s.length];
-        mergesort(s, tmp, 0, s.length-1);
+        mergesort(s, tmp, 0, lkm-1);
     }
     
     private void mergesort(Integer[] a, int[] tmp, int vas, int oik) {
