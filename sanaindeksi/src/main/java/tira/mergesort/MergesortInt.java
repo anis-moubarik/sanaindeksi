@@ -10,6 +10,10 @@ package tira.mergesort;
  */
 public class MergesortInt implements MergesortInterface{
 
+    /**
+     * 
+     * @param s
+     */
     @Override
     public void sort(Object[] s) {
         int [] tmp = new int[s.length];

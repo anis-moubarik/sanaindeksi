@@ -35,14 +35,14 @@ public class KomentoRiviUI{
     }
     
     /**
-     * 
+     * Annetaan System.in InputStreamiksi.
      */
     public KomentoRiviUI(){
             this(System.in);
         }
     
     /**
-     * 
+     * Käynnistetään pää- while-looppi joka prosessoi käyttäjän antamat komennot.
      * @throws IOException
      */
     public void run() throws IOException{
@@ -80,7 +80,7 @@ public class KomentoRiviUI{
             Map.Entry pairs = (Map.Entry) it.next();
             dt = (DynaaminenTauluInt) pairs.getValue();
             for(int i = 0; i < dt.size(); i++){
-                String[] rivit = tr.tiedostoJaRivit.get((String)pairs.getKey());
+                String[] rivit = tr.getTiedostoJaRivit().get((String)pairs.getKey());
                 System.out.println(pairs.getKey()+":"+dt.hae(i) +":"+rivit[dt.hae(i)-1]);
                 rivityhteensä++;
             }
@@ -91,7 +91,7 @@ public class KomentoRiviUI{
     }
     
     /**
-     * 
+     * Ladataan String taulukosta kaikki tiedostot Trieen.
      * @param tiedostot
      * @throws IOException
      */
@@ -122,7 +122,7 @@ public class KomentoRiviUI{
     }
     
     /**
-     * Metodi ottaa String komennon jolla ohjelmaa ohjataan.
+     * Ottaa String komennon jolla ohjelmaa ohjataan.
      * @param in
      */
     private void prosessoiKomento(String in) throws IOException {

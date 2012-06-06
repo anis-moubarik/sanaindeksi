@@ -15,17 +15,23 @@ public class TrieSolmu{
     /**
      * DynaaminenTaulu joka sisältää solmun lapset
      */
-    public DynaaminenTauluInterface<TrieSolmu> lapset;
+    private DynaaminenTauluInterface<TrieSolmu> lapset;
+
     /**
      * Kertoo onko solmuun asti kuljettu reitti kokonainen sana.
      */
     public boolean onkoSana;
     /**
-     * key,value Puu jossa on rivi ja tekstit järjestyksessä.
+     * HashMap jossa on rivi ja tekstit järjestyksessä.
      */
     private HashMap<String, DynaaminenTauluInterface<Integer>> tiedostoJaRivinumerot;
 
     
+    /**
+     * Lisätään taulukkoon tiedosto ja rivinnumero mistä rivin löytää.
+     * @param s
+     * @param i
+     */
     public void lisääTiedostoJaRivinumero(String s, int i){
         DynaaminenTauluInterface e = tiedostoJaRivinumerot.get(s);
         if(e == null)
@@ -34,15 +40,11 @@ public class TrieSolmu{
         tiedostoJaRivinumerot.put(s, e);
     }
     
-    public HashMap getTiedostoJaRivinumerot(){
-        return tiedostoJaRivinumerot;
-    }
     
     /**
      * 
      * @param kirjain
      * @param onkoSana
-     * @param rivi
      */
     public TrieSolmu(char kirjain, boolean onkoSana){
         this.kirjain = kirjain;
@@ -97,6 +99,22 @@ public class TrieSolmu{
      */
     public void setOnkoSana(boolean onkoSana) {
         this.onkoSana = onkoSana;
+    }
+    
+    /**
+     * Palautetaan tiedostoJaRivinumerot HashMap.
+     * @return
+     */
+    public HashMap<String, DynaaminenTauluInterface<Integer>> getTiedostoJaRivinumerot() {
+        return tiedostoJaRivinumerot;
+    }
+
+    /**
+     * Asetetaan parametrina saatu HashMap uudeksi tiedostoJaRivinumerot muuttujaksi.
+     * @param tiedostoJaRivinumerot
+     */
+    public void setTiedostoJaRivinumerot(HashMap<String, DynaaminenTauluInterface<Integer>> tiedostoJaRivinumerot) {
+        this.tiedostoJaRivinumerot = tiedostoJaRivinumerot;
     }
     
 }

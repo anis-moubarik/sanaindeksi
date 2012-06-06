@@ -1,6 +1,8 @@
 package tira.dynaaminentaulu;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import tira.trie.TrieSolmu;
 
 
@@ -130,6 +132,11 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
         return -1;
     }
 
+    /**
+     * 
+     * @param o
+     * @return
+     */
     public Object[] toArray(Object[] o) {
         return al.toArray(o);
     }

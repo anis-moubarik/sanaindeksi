@@ -12,6 +12,10 @@ public class Mergesort implements MergesortInterface{
     
     private int lkm;
     
+    /**
+     * 
+     * @param s
+     */
     @Override
     public void sort(Object[] s){
         String [] tmp = new String[s.length];

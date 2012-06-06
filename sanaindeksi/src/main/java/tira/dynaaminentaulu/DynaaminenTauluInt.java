@@ -18,12 +18,19 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
     private Integer[] alkiot;
     private MergesortInterface<Integer> ms;
     
+    /**
+     * Alustetaan taulu parametrin kokoiseksi.
+     * @param koko
+     */
     public DynaaminenTauluInt(int koko){
         lkm = 0;
         alkiot = new Integer[koko];
         ms = new MergesortInt();
     }
     
+    /**
+     * Ilman parametreja alustetaan taulu 50 alkion kokoiseksi.
+     */
     public DynaaminenTauluInt(){
         lkm = 0;
         alkiot = new Integer[50];
@@ -97,12 +104,22 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
         ms.sort(alkiot);
     }
 
+    /**
+     * 
+     * @param i
+     * @return
+     */
     @Override
     public Object etsi(Object i) {
         int index = binääriHaku((Integer) i);
         return hae(index);
     }
 
+    /**
+     * 
+     * @param o
+     * @return
+     */
     @Override
     public Object[] toArray(Object[] o) {
         throw new UnsupportedOperationException("Not supported yet.");

@@ -21,12 +21,19 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
     private int lkm;
     private String alkiot[];
     
+    /**
+     * Konstruktori joka ottaa parametrinaan taulun koon
+     * @param koko
+     */
     public DynaaminenTauluString(int koko){
         lkm = 0;
         alkiot = new String[koko];
         ms = new Mergesort();
     }
     
+    /**
+     * Alustetaan dynaaminen taulu aluksi 50 alkion kokoiseksi.
+     */
     public DynaaminenTauluString(){
         lkm = 0;
         alkiot = new String[50];
@@ -101,6 +108,11 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
         ms.sort(alkiot);
     }
 
+    /**
+     * 
+     * @param i
+     * @return
+     */
     @Override
     public Object etsi(Object i) {
         int index = binääriHaku((String) i);
@@ -125,6 +137,11 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
         return -1;
     }
 
+    /**
+     * 
+     * @param o
+     * @return
+     */
     @Override
     public Object[] toArray(Object[] o) {
         return Arrays.copyOfRange(alkiot, 0, lkm);

@@ -1,7 +1,6 @@
 package tira.trie;
 
 import java.util.HashMap;
-import tira.dynaaminentaulu.DynaaminenTauluInterface;
 
 
 
@@ -12,7 +11,10 @@ import tira.dynaaminentaulu.DynaaminenTauluInterface;
 public class Trie{
     
     private TrieSolmu juuri;
-    public HashMap<String, String[]> tiedostoJaRivit;
+
+    //Täällä säilötään tiedostonnimi ja teksti.
+    private HashMap<String, String[]> tiedostoJaRivit;
+
     
     /**
      * 
@@ -22,8 +24,27 @@ public class Trie{
         tiedostoJaRivit = new HashMap<String, String[]>();
     }
     
+    
+    /**
+     * Palautetaan HashMappina tiedostotJaRivit.
+     * @return tiedostotJaRivit
+     */
+    public HashMap<String, String[]> getTiedostoJaRivit() {
+        return tiedostoJaRivit;
+    }
+
+    
+    /**
+     * Asetetaan parametrina saatu HashMap uudeksi tiedostotJaRivit muuttujaksi.
+     * @param tiedostoJaRivit 
+     */
+    public void setTiedostoJaRivit(HashMap<String, String[]> tiedostoJaRivit) {
+        this.tiedostoJaRivit = tiedostoJaRivit;
+    }
+    
     /**
      * Lisätään String taulukosta kaikki sanat puuhun.
+     * @param tiedosto 
      * @param sanat
      */
     public void lisääSanat(String tiedosto, String[] sanat){
@@ -42,6 +63,7 @@ public class Trie{
      * Lisätään sana, jos solmulla ei ole lapsia, tehdään sille dynaaminen taulu 
      * jonne lapset lisätään. Jos solmulta löytyy kyseisen kirjaimen lapsi alustetaan
      * solmu muuttuja lapsella.
+     * @param tiedosto 
      * @param sana
      * @param rivi
      * @param riviTeksti  
@@ -53,12 +75,12 @@ public class Trie{
         char[] kirjaimet = sana.toCharArray();
         TrieSolmu solmu = juuri;
         for(i = 0; i < l; i++){
-            if (solmu.lapset.etsi(kirjaimet[i]) == null){
+            if (solmu.getLapset().etsi(kirjaimet[i]) == null){
                 TrieSolmu lisättäväSolmu = new TrieSolmu(kirjaimet[i], i == l-1 ? true : false);
                 lisättäväSolmu.lisääTiedostoJaRivinumero(tiedosto, rivi);
-                solmu.lapset.lisää(lisättäväSolmu);
+                solmu.getLapset().lisää(lisättäväSolmu);
             }
-            solmu = solmu.lapset.etsi(kirjaimet[i]);
+            solmu = (TrieSolmu) solmu.getLapset().etsi(kirjaimet[i]);
         }
         solmu.setOnkoSana(true); //Varmistetaan, että Yhdyssanojen ja pitkien sanojen alisanat tunnistetaan myös sanoiksi
         solmu.lisääTiedostoJaRivinumero(tiedosto, rivi);
@@ -80,7 +102,7 @@ public class Trie{
         for(i = 0; i < l; i++){
             if(solmu == null)
                 return false;
-            solmu = solmu.lapset.etsi(kirjaimet[i]);
+            solmu = (TrieSolmu) solmu.getLapset().etsi(kirjaimet[i]);
         }
         
         //Jos kaikki lapset on käytä läpi ja sanaa ei vielä olla löydetty palautetaan false
@@ -110,7 +132,7 @@ public class Trie{
         for(i = 0; i < l; i++){
             if(solmu == null)
                 return null;
-            solmu = solmu.lapset.etsi(kirjaimet[i]);
+            solmu = (TrieSolmu) solmu.getLapset().etsi(kirjaimet[i]);
         }
         
         if (i == l && solmu == null)
