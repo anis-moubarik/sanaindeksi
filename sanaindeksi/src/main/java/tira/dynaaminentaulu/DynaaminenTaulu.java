@@ -1,8 +1,8 @@
 package tira.dynaaminentaulu;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Arrays;
+import tira.mergesort.MergesortInterface;
+import tira.mergesort.MergesortTS;
 import tira.trie.TrieSolmu;
 
 
@@ -15,30 +15,52 @@ import tira.trie.TrieSolmu;
  */
 public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
 
-    private ArrayList<TrieSolmu> al;
-    private int count = 0;
+    private MergesortInterface<TrieSolmu> ms;
+    
+    private int lkm;
+    private TrieSolmu alkiot[];
     
     /**
      * 
      */
     public DynaaminenTaulu(){
-        al = new ArrayList<TrieSolmu>();
+        lkm = 0;
+        alkiot = new TrieSolmu[50];
+        ms = new MergesortTS();
+        
+    }
+    
+    public DynaaminenTaulu(int koko){
+        lkm = 0;
+        alkiot = new TrieSolmu[koko];
+        ms = new MergesortTS();
     }
     
     /**
      * Lisätään TrieSolmu dynaamiseen tauluun.
      * @param o 
      */
+    @Override
     public void lisää(TrieSolmu o) {
-        al.add(o);
-        järjestäTaulu();
+        if(lkm > alkiot.length - 1){
+            TrieSolmu[] apu = alkiot;
+            alkiot = Arrays.copyOf(apu, lkm*2);
+            alkiot[lkm] = o;
+        }
+        else
+        {
+            alkiot[lkm] = o;
+        }
+        lkm++;
     }
 
     /**
      * Tyhjentää taulun.
      */
+    @Override
     public void tyhjennäTaulu() {
-        al.clear();
+        alkiot = new TrieSolmu[0];
+        lkm = 0;
     }
 
     /**
@@ -46,8 +68,14 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * @param elem 
      * @return true
      */
+    @Override
     public boolean sisältää(TrieSolmu elem) {
-        return al.contains(elem);
+        for(int i = 0; i < alkiot.length; i++){
+            if(elem.equals(alkiot[i])){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -55,21 +83,23 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * @param index jolla taulusta haetaan solmu.
      * @return TrieSolmu joka on löydetty indexin kohdalta.
      */
+    @Override
     public TrieSolmu hae(int index) {
-        if(index > al.size())
+        if(index < 0)
             return null;
-        else if(index < 0)
+        else if (index > lkm)
             return null;
         else
-            return al.get(index);
+            return alkiot[index];
     }
 
     /**
      * Palauttaa true, jos taulu on tyhjä
      * @return true
      */
+    @Override
     public boolean onkoTyhjä() {
-        return al.isEmpty();
+        return (lkm == 0) ? true : false;
     }
 
     /**
@@ -77,23 +107,40 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * @param index 
      * @return TrieSolmu
      */
+    @Override
     public TrieSolmu poista(int index) {
-        return al.remove(index);
+        TrieSolmu poistettava;
+        if(index == lkm-1)
+        {
+            poistettava = alkiot[index];
+            lkm--;
+        }
+        else
+        {
+            TrieSolmu seur = alkiot[index+1];
+            poistettava = alkiot[index];
+            alkiot[index] = seur;
+            lkm--;
+        }
+        return poistettava;
     }
     
     /**
      * Palauttaa taulun koko
      * @return int
      */
+    @Override
     public int size(){
-        return al.size();
+        return lkm;
     }
 
     /**
      * Järjestetään taulu leksikografiseen järjestykseen.
      */
+    @Override
     public void järjestäTaulu() {
-        Collections.sort(al, new DtComparator());
+        if(lkm > 1)
+            ms.sort(alkiot, lkm);
     }
     
     /**
@@ -102,6 +149,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * @return  TrieSolmu
      */
     
+    @Override
     public TrieSolmu etsi(Object c){
         int index = binääriHaku((Character)c);
         return hae(index);
@@ -117,13 +165,13 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
     private int binääriHaku(char c){
         int start, end, mid;
         start = 0;
-        end = al.size() - 1;
+        end = lkm - 1;
         while(start <= end){
             mid = (start + end) / 2;
             
-            if(al.get(mid).getKirjain() < c)
+            if(alkiot[mid].getKirjain() < c)
                 start = mid + 1;
-            else if (al.get(mid).getKirjain() > c)
+            else if (alkiot[mid].getKirjain() > c)
                 end = mid - 1;
             else
                 return mid;
@@ -137,28 +185,9 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * @param o
      * @return
      */
+    @Override
     public Object[] toArray(Object[] o) {
-        return al.toArray(o);
+        return alkiot;
     }
 
-}
-class DtComparator implements Comparator{
-    
-    /**
-     * Comparator luokka TrieSolmujen lapsien sorttaamista varten.
-     * Käytetään kirjainten ASCII koodeja niitten järjestämiseen.
-     * @param t1
-     * @param t2
-     * @return 
-     */
-    public int compare(Object t1, Object t2) {
-        char c1 = ((TrieSolmu)t1).getKirjain();
-        char c2 = ((TrieSolmu)t2).getKirjain();
-        if(c1 > c2)
-            return 1;
-        else if(c1 < c2)
-            return -1;
-        else
-            return 0;    }
-    
 }

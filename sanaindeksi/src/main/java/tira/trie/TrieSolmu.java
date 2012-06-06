@@ -10,7 +10,8 @@ import tira.dynaaminentaulu.DynaaminenTauluInterface;
  * @author Anis
  */
 public class TrieSolmu{
-    
+
+
     private char kirjain;
     /**
      * DynaaminenTaulu joka sisältää solmun lapset
@@ -115,6 +116,28 @@ public class TrieSolmu{
      */
     public void setTiedostoJaRivinumerot(HashMap<String, DynaaminenTauluInterface<Integer>> tiedostoJaRivinumerot) {
         this.tiedostoJaRivinumerot = tiedostoJaRivinumerot;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TrieSolmu other = (TrieSolmu) obj;
+        if (this.kirjain != other.kirjain) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + this.kirjain;
+        return hash;
     }
     
 }

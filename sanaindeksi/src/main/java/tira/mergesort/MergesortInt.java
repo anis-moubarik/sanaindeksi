@@ -4,29 +4,26 @@
  */
 package tira.mergesort;
 
+import java.util.Arrays;
+
 /**
  *
  * @author moubarik
  */
-public class MergesortInt implements MergesortInterface{
+public class MergesortInt implements MergesortInterface<Integer>{
 
     /**
      * 
      * @param s
      */
     @Override
-    public void sort(Object[] s) {
-        int [] tmp = new int[s.length];
-        int[] luvut = {};
-        int i = 0;
-        for(Object o : s){
-            luvut[i] = (Integer) o;
-            i++;
-        }
-        mergesort(luvut, tmp, 0, s.length-1);
+    public void sort(Integer[] s, int lkm) {
+        s = Arrays.copyOf(s, lkm);
+        int[] tmp = new int[s.length];
+        mergesort(s, tmp, 0, s.length-1);
     }
     
-    private void mergesort(int[] a, int[] tmp, int vas, int oik) {
+    private void mergesort(Integer[] a, int[] tmp, int vas, int oik) {
         if(vas < oik)
         {
             int mid = (vas + oik) / 2;
@@ -39,7 +36,7 @@ public class MergesortInt implements MergesortInterface{
         }
     }
 
-    private void merge(int[] a, int[] tmp, int vasP, int oikP, int oikLoppu) {
+    private void merge(Integer[] a, int[] tmp, int vasP, int oikP, int oikLoppu) {
         
         int vasLoppu = oikP -1;
         int tmpP = vasP;

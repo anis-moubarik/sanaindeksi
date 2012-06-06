@@ -12,7 +12,7 @@ import tira.mergesort.MergesortInterface;
  *
  * @author moubarik
  */
-public class DynaaminenTauluInt implements DynaaminenTauluInterface{
+public class DynaaminenTauluInt implements DynaaminenTauluInterface<Integer>{
 
     private int lkm;
     private Integer[] alkiot;
@@ -37,17 +37,17 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
     }
     
     @Override
-    public void lisää(Object o) {
+    public void lisää(Integer o) {
         if(lkm > alkiot.length-1)
         {
             Integer[] apu = alkiot;
             //alkiot = new String[lkm*2];
             alkiot = Arrays.copyOf(apu, lkm*2);
-            alkiot[lkm] = (Integer) o;
+            alkiot[lkm] = o;
         }
         else
         {
-            alkiot[lkm] = (Integer) o;
+            alkiot[lkm] = o;
         }
         lkm++;
     }
@@ -55,19 +55,20 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
     @Override
     public void tyhjennäTaulu() {
         alkiot = new Integer[0];
+        lkm = 0;
     }
 
     @Override
-    public boolean sisältää(Object elem) {
+    public boolean sisältää(Integer elem) {
         for (int i = 0; i < lkm; i++) {
-            if(alkiot[i] == (Integer) elem)
+            if(alkiot[i] == elem)
                 return true;
         }
         return false;
     }
 
     @Override
-    public Object hae(int index) {
+    public Integer hae(int index) {
         return alkiot[index];
     }
 
@@ -77,7 +78,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
     }
 
     @Override
-    public Object poista(int index) {
+    public Integer poista(int index) {
         int poistettava;
         if(index == lkm-1)
         {
@@ -101,7 +102,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
 
     @Override
     public void järjestäTaulu() {
-        ms.sort(alkiot);
+        ms.sort(alkiot, lkm);
     }
 
     /**
@@ -110,7 +111,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
      * @return
      */
     @Override
-    public Object etsi(Object i) {
+    public Integer etsi(Object i) {
         int index = binääriHaku((Integer) i);
         return hae(index);
     }

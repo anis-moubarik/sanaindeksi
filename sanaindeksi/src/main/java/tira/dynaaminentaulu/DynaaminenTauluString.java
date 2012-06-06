@@ -12,7 +12,7 @@ import tira.mergesort.MergesortInterface;
  *
  * @author moubarik
  */
-public class DynaaminenTauluString implements DynaaminenTauluInterface{
+public class DynaaminenTauluString implements DynaaminenTauluInterface<String>{
     
     //private ArrayList<String> al = new ArrayList<String>();
     
@@ -37,40 +37,43 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
     public DynaaminenTauluString(){
         lkm = 0;
         alkiot = new String[50];
+        ms = new Mergesort();
     }
     
     @Override
-    public void lisää(Object o) {
+    public void lisää(String o) {
         if(lkm > alkiot.length-1)
         {
             String[] apu = alkiot;
             //alkiot = new String[lkm*2];
             alkiot = Arrays.copyOf(apu, lkm*2);
-            alkiot[lkm] = (String) o;
+            alkiot[lkm] = o;
         }
         else
         {
         alkiot[lkm] = (String) o;
         }
         lkm++;
+        //järjestäTaulu();
     }
 
     @Override
     public void tyhjennäTaulu() {
         alkiot = new String[0];
+        lkm = 0;
     }
 
     @Override
-    public boolean sisältää(Object elem) {
+    public boolean sisältää(String elem) {
         for (int i = 0; i < lkm; i++) {
-            if(alkiot[i].equals((String)elem))
+            if(alkiot[i].equals(elem))
                 return true;
         }
         return false;
     }
     
     @Override
-    public Object hae(int index) {
+    public String hae(int index) {
         return alkiot[index];
     }
 
@@ -80,7 +83,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
     }
 
     @Override
-    public Object poista(int index) {
+    public String poista(int index) {
         String poistettava;
         if(index == lkm-1)
         {
@@ -105,7 +108,8 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
     @Override
     public void järjestäTaulu() {
         //Collections.sort(al);
-        ms.sort(alkiot);
+        if(lkm > 1)
+            ms.sort(alkiot, lkm);
     }
 
     /**
@@ -114,7 +118,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface{
      * @return
      */
     @Override
-    public Object etsi(Object i) {
+    public String etsi(Object i) {
         int index = binääriHaku((String) i);
         return hae(index);
     }
