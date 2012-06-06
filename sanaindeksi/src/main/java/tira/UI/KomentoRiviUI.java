@@ -63,21 +63,23 @@ public class KomentoRiviUI{
     private void etsi(String etsittäväSana){
         long alku = System.currentTimeMillis();
         TrieSolmu s = tr.etsiSolmu(etsittäväSana);
-        long loppu = System.currentTimeMillis();
         
         if(s == null){
             System.out.println("Ei löytynyt!");
             return;
         }
+        long loppu = System.currentTimeMillis();
+        
         int rivityhteensä = 0;
         DynaaminenTauluInterface<Integer> dt;
         Iterator it = s.getTiedostoJaRivinumerot().entrySet().iterator();
         while(it.hasNext()){
             Map.Entry pairs = (Map.Entry) it.next();
             dt = (DynaaminenTauluInt) pairs.getValue();
-            for(int i = 0; i < dt.size()-1; i++){
+            for(int i = 0; i < dt.size(); i++){
                 String[] rivit = tr.tiedostoJaRivit.get((String)pairs.getKey());
-                System.out.println(rivit[dt.hae(i)]);
+                System.out.println(pairs.getKey()+":"+dt.hae(i) +":"+rivit[dt.hae(i)-1]);
+                rivityhteensä++;
             }
         }
         

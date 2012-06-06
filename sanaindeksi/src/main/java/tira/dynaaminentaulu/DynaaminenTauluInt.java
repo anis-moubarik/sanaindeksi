@@ -15,25 +15,25 @@ import tira.mergesort.MergesortInterface;
 public class DynaaminenTauluInt implements DynaaminenTauluInterface{
 
     private int lkm;
-    private int[] alkiot;
+    private Integer[] alkiot;
     private MergesortInterface<Integer> ms;
     
     public DynaaminenTauluInt(int koko){
         lkm = 0;
-        alkiot = new int[koko];
+        alkiot = new Integer[koko];
         ms = new MergesortInt();
     }
     
     public DynaaminenTauluInt(){
         lkm = 0;
-        alkiot = new int[50];
+        alkiot = new Integer[50];
     }
     
     @Override
     public void lisää(Object o) {
         if(lkm > alkiot.length-1)
         {
-            int[] apu = alkiot;
+            Integer[] apu = alkiot;
             //alkiot = new String[lkm*2];
             alkiot = Arrays.copyOf(apu, lkm*2);
             alkiot[lkm] = (Integer) o;
@@ -47,7 +47,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface{
 
     @Override
     public void tyhjennäTaulu() {
-        alkiot = new int[0];
+        alkiot = new Integer[0];
     }
 
     @Override

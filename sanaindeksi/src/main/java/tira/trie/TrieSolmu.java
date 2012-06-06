@@ -1,10 +1,9 @@
 package tira.trie;
 
 import java.util.HashMap;
-import java.util.TreeMap;
 import tira.dynaaminentaulu.DynaaminenTaulu;
+import tira.dynaaminentaulu.DynaaminenTauluInt;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
-import tira.dynaaminentaulu.DynaaminenTauluString;
 
 /**
  * 
@@ -30,8 +29,8 @@ public class TrieSolmu{
     public void lisääTiedostoJaRivinumero(String s, int i){
         DynaaminenTauluInterface e = tiedostoJaRivinumerot.get(s);
         if(e == null)
-            e = new DynaaminenTauluString();
-        e.lisää(e);
+            e = new DynaaminenTauluInt();
+        e.lisää(i);
         tiedostoJaRivinumerot.put(s, e);
     }
     
