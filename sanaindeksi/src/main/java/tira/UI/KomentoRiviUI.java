@@ -69,20 +69,28 @@ public class KomentoRiviUI{
             System.out.println("Ei löytynyt!");
             return;
         }
-        long loppu = System.currentTimeMillis();
         
         int rivityhteensä = 0;
         DynaaminenTauluInterface<Integer> dt;
+        
+        //Haetaan hashmapin iteraattori, ja lähdetään tulostamaan löydettyjä rivejä
         Iterator it = s.getTiedostoJaRivinumerot().entrySet().iterator();
+        long loppu = System.currentTimeMillis();
         int j = 0;
         while(it.hasNext()){
             Map.Entry pairs = (Map.Entry) it.next();
             dt = (DynaaminenTauluInt) pairs.getValue();
             for(int i = 0; i < dt.size(); i++){
                 String[] rivit = tr.getTiedostoJaRivit().get((String)pairs.getKey());
+                /*Tulostetaan pairs muuttujan avain, joka on tiedostonnimi, ja 
+                * haetaan dynaamisesta taulukosta rivi. Haetaan myös rivit taulukosta
+                * rivin määräämältä kohdalta merkkijono.
+                */
                 System.out.println(pairs.getKey()+":"+dt.hae(i) +":"+rivit[dt.hae(i)-1]);
                 rivityhteensä++;
             }
+            
+            //Tulostataan myös kaikki alilapset, esim. hae vanha palauttaa myös sanat vanhat, vanhan jne.
             if(s.getLapset().hae(j) == null)
                 break;
             it = s.getLapset().hae(j).getTiedostoJaRivinumerot().entrySet().iterator();
