@@ -75,7 +75,6 @@ public class Trie{
         char[] kirjaimet = sana.toCharArray();
         TrieSolmu solmu = juuri;
         for(i = 0; i < l; i++){
-            solmu.getLapset().järjestäTaulu();
             if (solmu.getLapset().etsi(kirjaimet[i]) == null){
                 TrieSolmu lisättäväSolmu = new TrieSolmu(kirjaimet[i], i == l-1 ? true : false);
                 lisättäväSolmu.lisääTiedostoJaRivinumero(tiedosto, rivi);
@@ -106,7 +105,7 @@ public class Trie{
             solmu = (TrieSolmu) solmu.getLapset().etsi(kirjaimet[i]);
         }
         
-        //Jos kaikki lapset on käytä läpi ja sanaa ei vielä olla löydetty palautetaan false
+        //Jos kaikki lapset on käyty läpi ja sanaa ei vielä olla löydetty palautetaan false
         if (i == l && solmu == null)
             return false;
         

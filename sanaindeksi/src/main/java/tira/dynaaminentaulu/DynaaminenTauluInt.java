@@ -50,6 +50,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface<Integer>{
             alkiot[lkm] = o;
         }
         lkm++;
+        //järjestäTaulu();
     }
 
     @Override
@@ -127,7 +128,6 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface<Integer>{
     }
 
     private int binääriHaku(Integer c) {
-        järjestäTaulu();
         int start, end, mid;
         start = 0;
         end = alkiot.length - 1;

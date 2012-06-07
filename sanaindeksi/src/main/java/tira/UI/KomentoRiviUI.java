@@ -74,6 +74,7 @@ public class KomentoRiviUI{
         int rivityhteensä = 0;
         DynaaminenTauluInterface<Integer> dt;
         Iterator it = s.getTiedostoJaRivinumerot().entrySet().iterator();
+        int j = 0;
         while(it.hasNext()){
             Map.Entry pairs = (Map.Entry) it.next();
             dt = (DynaaminenTauluInt) pairs.getValue();
@@ -82,6 +83,10 @@ public class KomentoRiviUI{
                 System.out.println(pairs.getKey()+":"+dt.hae(i) +":"+rivit[dt.hae(i)-1]);
                 rivityhteensä++;
             }
+            if(s.getLapset().hae(j) == null)
+                break;
+            it = s.getLapset().hae(j).getTiedostoJaRivinumerot().entrySet().iterator();
+            j++;
         }
         
         System.out.println("Haussa kesti: "+(loppu-alku)+"ms. Yhteensä "+rivityhteensä+" riviä.");

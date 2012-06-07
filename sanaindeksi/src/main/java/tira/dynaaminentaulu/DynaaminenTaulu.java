@@ -53,6 +53,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
             alkiot[lkm] = o;
         }
         lkm++;
+        järjestäTaulu();
     }
 
     /**
@@ -164,7 +165,6 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * @return 
      */
     private int binääriHaku(char c){
-        //järjestäTaulu();
         int start, end, mid;
         start = 0;
         end = lkm - 1;

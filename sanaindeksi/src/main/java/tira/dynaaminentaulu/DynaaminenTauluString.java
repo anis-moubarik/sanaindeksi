@@ -104,7 +104,6 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface<String>{
 
     @Override
     public void järjestäTaulu() {
-        //Collections.sort(al);
         if(lkm > 1)
             ms.sort(alkiot, lkm);
     }
@@ -121,7 +120,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface<String>{
     }
 
     private int binääriHaku(String c) {
-        järjestäTaulu();
+        //järjestäTaulu();
         int start, end, mid;
         start = 0;
         end = alkiot.length - 1;

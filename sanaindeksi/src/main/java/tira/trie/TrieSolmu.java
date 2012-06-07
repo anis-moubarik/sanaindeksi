@@ -74,7 +74,7 @@ public class TrieSolmu{
      * Palauttaa dynaamisessa taulussa olevat solmun lapset.
      * @return
      */
-    public DynaaminenTauluInterface getLapset() {
+    public DynaaminenTauluInterface<TrieSolmu> getLapset() {
         return lapset;
     }
 
