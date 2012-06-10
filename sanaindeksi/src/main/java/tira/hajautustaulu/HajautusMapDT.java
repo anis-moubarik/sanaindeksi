@@ -7,13 +7,14 @@ package tira.hajautustaulu;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
+import tira.dynaaminentaulu.DynaaminenTauluInterface;
 
 
 /**
  *
  * @author moubarik
  */
-public class HajautusMap{
+public class HajautusMapDT{
 
     private LinkedList<Map.Entry>[] taulukko;
     private LinkedList<Map.Entry> taulu = new LinkedList<Map.Entry>();
@@ -21,12 +22,12 @@ public class HajautusMap{
     private int koko;
     private int täyttö;
     
-    public HajautusMap(int koko){
+    public HajautusMapDT(int koko){
         taulukko = new LinkedList[koko];
         this.koko = koko;
     }
     
-    public HajautusMap(){
+    public HajautusMapDT(){
         this(10000);
     }
     
@@ -34,8 +35,8 @@ public class HajautusMap{
         
     }
     
-    void put(String tiedosto, String[] rivit) {
-        Map.Entry<String, String[]> entry = new TiedostoRiviEntry<String, String[]>(tiedosto, rivit);
+    void put(String tiedosto, DynaaminenTauluInterface<Integer> rivinumerot) {
+        Map.Entry<String, DynaaminenTauluInterface<Integer>> entry = new TiedostoRiviNumeroEntry<String, DynaaminenTauluInterface<Integer>>(tiedosto, rivinumerot);
         int hash = hashCode(entry.getKey());
         while(search(entry) == false){
             if(taulu == null){
@@ -53,12 +54,12 @@ public class HajautusMap{
         
     }
 
-    private boolean search(Entry<String, String[]> entry) {
+    private boolean search(Entry<String, DynaaminenTauluInterface<Integer>> entry) {
         taulu = taulukko[hashCode(entry.getKey())];
         return listSearch(entry, taulu);
     }
 
-    private boolean listSearch(Entry<String, String[]> entry, LinkedList<Entry> etsittäväTaulu) {
+    private boolean listSearch(Entry<String, DynaaminenTauluInterface<Integer>> entry, LinkedList<Entry> etsittäväTaulu) {
         if(etsittäväTaulu == null){
             return false;
         }

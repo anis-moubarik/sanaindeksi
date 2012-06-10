@@ -19,6 +19,7 @@ public class TiedostonLuku {
     InputStreamReader ir;
     BufferedReader br;
     
+    
     /**
      * Luetaan tiedosto/Gutenberg URL String[] taulukkoon, käytetään UTF8 enkoodausta.
      * @param tiedostonimi
