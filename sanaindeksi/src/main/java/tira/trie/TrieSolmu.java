@@ -1,9 +1,9 @@
 package tira.trie;
 
-import java.util.HashMap;
 import tira.dynaaminentaulu.DynaaminenTaulu;
 import tira.dynaaminentaulu.DynaaminenTauluInt;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
+import tira.hajautustaulu.HajautusMapDT;
 
 /**
  * 
@@ -23,9 +23,9 @@ public class TrieSolmu{
      */
     public boolean onkoSana;
     /**
-     * HashMap jossa on rivi ja tekstit järjestyksessä.
+     * HajautusMapDT jossa on rivi ja tekstit järjestyksessä.
      */
-    private HashMap<String, DynaaminenTauluInterface<Integer>> tiedostoJaRivinumerot;
+    private HajautusMapDT tiedostoJaRivinumerot;
 
     
     /**
@@ -34,7 +34,7 @@ public class TrieSolmu{
      * @param i
      */
     public void lisääTiedostoJaRivinumero(String s, int i){
-        DynaaminenTauluInterface e = tiedostoJaRivinumerot.get(s);
+        DynaaminenTauluInt e = tiedostoJaRivinumerot.get(s);
         if(e == null)
             e = new DynaaminenTauluInt();
         e.lisää(i);
@@ -51,7 +51,7 @@ public class TrieSolmu{
         this.kirjain = kirjain;
         this.onkoSana = onkoSana;
         this.lapset = new DynaaminenTaulu();
-        this.tiedostoJaRivinumerot = new HashMap<String, DynaaminenTauluInterface<Integer>>();
+        this.tiedostoJaRivinumerot = new HajautusMapDT(50);
     }
 
     /**
@@ -103,18 +103,18 @@ public class TrieSolmu{
     }
     
     /**
-     * Palautetaan tiedostoJaRivinumerot HashMap.
+     * Palautetaan tiedostoJaRivinumerot HajautusMapDT.
      * @return
      */
-    public HashMap<String, DynaaminenTauluInterface<Integer>> getTiedostoJaRivinumerot() {
+    public HajautusMapDT getTiedostoJaRivinumerot() {
         return tiedostoJaRivinumerot;
     }
 
     /**
-     * Asetetaan parametrina saatu HashMap uudeksi tiedostoJaRivinumerot muuttujaksi.
+     * Asetetaan parametrina saatu HajautusMapDT uudeksi tiedostoJaRivinumerot muuttujaksi.
      * @param tiedostoJaRivinumerot
      */
-    public void setTiedostoJaRivinumerot(HashMap<String, DynaaminenTauluInterface<Integer>> tiedostoJaRivinumerot) {
+    public void setTiedostoJaRivinumerot(HajautusMapDT tiedostoJaRivinumerot) {
         this.tiedostoJaRivinumerot = tiedostoJaRivinumerot;
     }
     

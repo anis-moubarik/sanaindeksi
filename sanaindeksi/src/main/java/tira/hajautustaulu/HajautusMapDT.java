@@ -7,6 +7,7 @@ package tira.hajautustaulu;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
+import tira.dynaaminentaulu.DynaaminenTauluInt;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
 
 
@@ -28,14 +29,18 @@ public class HajautusMapDT{
     }
     
     public HajautusMapDT(){
-        this(10000);
+        this(500);
+    }
+    
+    public LinkedList<Map.Entry>[] getTaulukko(){
+        return taulukko;
     }
     
     public void rehash(){
         
     }
     
-    void put(String tiedosto, DynaaminenTauluInterface<Integer> rivinumerot) {
+    public void put(String tiedosto, DynaaminenTauluInterface<Integer> rivinumerot) {
         Map.Entry<String, DynaaminenTauluInterface<Integer>> entry = new TiedostoRiviNumeroEntry<String, DynaaminenTauluInterface<Integer>>(tiedosto, rivinumerot);
         int hash = hashCode(entry.getKey());
         while(search(entry) == false){
@@ -48,9 +53,9 @@ public class HajautusMapDT{
             }
             taulukko[hash] = taulu;
         }
-        
-        if(loadFactor < (täyttö / koko))
-            rehash();
+        //System.out.println(tiedosto+": "+rivinumerot.toString());
+        //if(loadFactor < (täyttö / koko))
+            //rehash();
         
     }
 
@@ -107,16 +112,16 @@ public class HajautusMapDT{
         return c-64;
     }
 
-    public String[] get(String s) {
+    public DynaaminenTauluInterface<Integer> get(String s) {
         int hc = hashCode(s);
         LinkedList<Map.Entry> löydetty = taulukko[hc];
         
-        if(löydetty.size() == 0)
+        if(löydetty == null || löydetty.size() == 0)
             return null;
         
         for (int i = 0; i < löydetty.size(); i++) {
             if(löydetty.get(i).getKey().equals(s))
-                return (String[])löydetty.get(i).getValue();
+                return (DynaaminenTauluInt)löydetty.get(i).getValue();
         }
         return null;
         

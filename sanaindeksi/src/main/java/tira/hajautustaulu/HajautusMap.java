@@ -27,14 +27,14 @@ public class HajautusMap{
     }
     
     public HajautusMap(){
-        this(10000);
+        this(500);
     }
     
     public void rehash(){
         
     }
     
-    void put(String tiedosto, String[] rivit) {
+    public void put(String tiedosto, String[] rivit) {
         Map.Entry<String, String[]> entry = new TiedostoRiviEntry<String, String[]>(tiedosto, rivit);
         int hash = hashCode(entry.getKey());
         while(search(entry) == false){

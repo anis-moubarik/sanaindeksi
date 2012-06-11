@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import tira.dynaaminentaulu.DynaaminenTauluInt;
@@ -74,28 +75,28 @@ public class KomentoRiviUI{
         DynaaminenTauluInterface<Integer> dt;
         
         //Haetaan hashmapin iteraattori, ja lähdetään tulostamaan löydettyjä rivejä
-        Iterator it = s.getTiedostoJaRivinumerot().entrySet().iterator();
-        long loppu = System.currentTimeMillis();
-        int j = 0;
-        while(it.hasNext()){
-            Map.Entry pairs = (Map.Entry) it.next();
+        LinkedList<Map.Entry>[] taulu = s.getTiedostoJaRivinumerot().getTaulukko();
+        
+        for(int i = 0; i < taulu.length; i++){
+            Map.Entry pairs = (Map.Entry) taulu[i];
             dt = (DynaaminenTauluInt) pairs.getValue();
-            for(int i = 0; i < dt.size(); i++){
+            for (int j = 0; j < dt.size(); j++) {
                 String[] rivit = tr.getTiedostoJaRivit().get((String)pairs.getKey());
-                /*Tulostetaan pairs muuttujan avain, joka on tiedostonnimi, ja 
+               /*Tulostetaan pairs muuttujan avain, joka on tiedostonnimi, ja 
                 * haetaan dynaamisesta taulukosta rivi. Haetaan myös rivit taulukosta
                 * rivin määräämältä kohdalta merkkijono.
                 */
-                System.out.println(pairs.getKey()+":"+dt.hae(i) +":"+rivit[dt.hae(i)-1]);
+                System.out.println(pairs.getKey()+":"+dt.hae(i)+":"+rivit[dt.hae(i)-1]);
                 rivityhteensä++;
+                
             }
-            
-            //Tulostataan myös kaikki alilapset, esim. hae vanha palauttaa myös sanat vanhat, vanhan jne.
-            if(s.getLapset().hae(j) == null)
+            if(s.getLapset().hae(i) == null)
                 break;
-            it = s.getLapset().hae(j).getTiedostoJaRivinumerot().entrySet().iterator();
-            j++;
+            taulu = s.getLapset().hae(i).getTiedostoJaRivinumerot().getTaulukko();
         }
+        
+        long loppu = System.currentTimeMillis();
+        int j = 0;
         
         System.out.println("Haussa kesti: "+(loppu-alku)+"ms. Yhteensä "+rivityhteensä+" riviä.");
         

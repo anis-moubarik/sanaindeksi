@@ -1,6 +1,6 @@
 package tira.trie;
 
-import java.util.HashMap;
+import tira.hajautustaulu.HajautusMap;
 
 
 
@@ -13,7 +13,7 @@ public class Trie{
     private TrieSolmu juuri;
 
     //Täällä säilötään tiedostonnimi ja teksti.
-    private HashMap<String, String[]> tiedostoJaRivit;
+    private HajautusMap tiedostoJaRivit;
 
     
     /**
@@ -21,24 +21,24 @@ public class Trie{
      */
     public Trie(){
         juuri = new TrieSolmu('\0', false);
-        tiedostoJaRivit = new HashMap<String, String[]>();
+        tiedostoJaRivit = new HajautusMap();
     }
     
     
     /**
-     * Palautetaan HashMappina tiedostotJaRivit.
+     * Palautetaan HajautusMappina tiedostotJaRivit.
      * @return tiedostotJaRivit
      */
-    public HashMap<String, String[]> getTiedostoJaRivit() {
+    public HajautusMap getTiedostoJaRivit() {
         return tiedostoJaRivit;
     }
 
     
     /**
-     * Asetetaan parametrina saatu HashMap uudeksi tiedostotJaRivit muuttujaksi.
+     * Asetetaan parametrina saatu HajautusMap uudeksi tiedostotJaRivit muuttujaksi.
      * @param tiedostoJaRivit 
      */
-    public void setTiedostoJaRivit(HashMap<String, String[]> tiedostoJaRivit) {
+    public void setTiedostoJaRivit(HajautusMap tiedostoJaRivit) {
         this.tiedostoJaRivit = tiedostoJaRivit;
     }
     
