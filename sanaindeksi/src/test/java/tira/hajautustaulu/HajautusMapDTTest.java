@@ -17,7 +17,7 @@ public class HajautusMapDTTest {
     
     @Before
     public void setUp() {
-        hm = new HajautusMapDT();
+        hm = new HajautusMapDT(3);
     }
     
     @Test
@@ -39,10 +39,5 @@ public class HajautusMapDTTest {
             assertEquals(true, tulos);   
         }
         
-    }
-    
-    @Test
-    public void rehashTest(){
-        hm.rehash();
     }
 }
