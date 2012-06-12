@@ -34,9 +34,9 @@ public class TrieSolmu{
      * @param i
      */
     public void lisääTiedostoJaRivinumero(String s, int i){
-        DynaaminenTauluInt e = tiedostoJaRivinumerot.get(s);
+        DynaaminenTauluInterface<Integer> e = tiedostoJaRivinumerot.get(s);
         if(e == null)
-            e = new DynaaminenTauluInt();
+            e = new DynaaminenTauluInt(5);
         e.lisää(i);
         tiedostoJaRivinumerot.put(s, e);
     }
