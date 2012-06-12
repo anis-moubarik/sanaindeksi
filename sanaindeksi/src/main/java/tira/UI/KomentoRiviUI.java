@@ -78,6 +78,24 @@ public class KomentoRiviUI{
        
         //Tähän jotain kivaa iterointia
         
+        for (int i = 0; i < taulu.length; i++) {
+            if(taulu[i] == null)
+                continue;
+            Map.Entry pair = taulu[i];
+            dt = (DynaaminenTauluInt) pair.getValue();
+            for (int j = 0; j < dt.size(); j++) {
+                String[] rivit = tr.getTiedostoJaRivit().get((String)pair.getKey());
+                /*Tulostetaan pairs muuttujan avain, joka on tiedostonnimi, ja 
+                 * haetaan dynaamisesta taulukosta rivi. Haetaan myös rivit taulukosta
+                 * rivin määräämältä kohdalta merkkijono.
+                 */
+                System.out.println(pair.getKey()+":"+dt.hae(j)+":"+rivit[dt.hae(j)-1]);
+                rivityhteensä++;
+                
+            }
+            
+        }
+        
         long loppu = System.currentTimeMillis();
         
         System.out.println("Haussa kesti: "+(loppu-alku)+"ms. Yhteensä "+rivityhteensä+" riviä.");
