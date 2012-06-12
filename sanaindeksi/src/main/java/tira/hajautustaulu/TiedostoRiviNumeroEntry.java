@@ -4,7 +4,7 @@ import java.util.Map;
 
 
 
-final class TiedostoRiviNumeroEntry<K, V> implements Map.Entry<K, V>{
+public final class TiedostoRiviNumeroEntry<K, V> implements Map.Entry<K, V>{
     
     private final K key;
     private V value;

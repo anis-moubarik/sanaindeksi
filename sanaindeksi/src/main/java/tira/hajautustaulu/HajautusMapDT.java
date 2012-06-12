@@ -18,13 +18,17 @@ public class HajautusMapDT {
     private final double loadFactor = 0.8;
     private int täyttö;
 
-    HajautusMapDT(int koko) {
+    public HajautusMapDT(int koko) {
         taulu = new TiedostoRiviNumeroEntry[koko];
         this.koko = koko;
     }
 
-    HajautusMapDT() {
+    public HajautusMapDT() {
         this(10);
+    }
+    
+    public TiedostoRiviNumeroEntry[] getTaulukko(){
+        return taulu;
     }
 
     private void rehash() {

@@ -9,6 +9,7 @@ import tira.dynaaminentaulu.DynaaminenTauluInt;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
 import tira.dynaaminentaulu.DynaaminenTauluString;
 import tira.fileIO.TiedostonLuku;
+import tira.hajautustaulu.TiedostoRiviNumeroEntry;
 import tira.trie.Trie;
 import tira.trie.TrieSolmu;
 
@@ -73,19 +74,9 @@ public class KomentoRiviUI{
         DynaaminenTauluInterface<Integer> dt;
         
         //Haetaan hashmapin iteraattori, ja lähdetään tulostamaan löydettyjä rivejä
-        LinkedList[] taulu = s.getTiedostoJaRivinumerot().getTaulukko();
-        
-        for(int i = 0; i < taulu.length; i++){
-            if(taulu[i] == null)
-                continue;
-            for (int j = 0; j < taulu[i].size(); j++) {
-                Map.Entry pairs = (Map.Entry) taulu[i].get(j);
-                dt = (DynaaminenTauluInt) pairs.getValue();
-                String[] rivit = tr.getTiedostoJaRivit().get((String)pairs.getKey());
-                System.out.println(pairs.getKey()+":"+dt.hae(0)+":"+rivit[dt.hae(0)-1]);
-                rivityhteensä++;
-            }
-        }
+        TiedostoRiviNumeroEntry[] taulu = s.getTiedostoJaRivinumerot().getTaulukko();
+       
+        //Tähän jotain kivaa iterointia
         
         long loppu = System.currentTimeMillis();
         
