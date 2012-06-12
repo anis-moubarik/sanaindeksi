@@ -48,17 +48,14 @@ public class HajautusMapDT{
     public void put(String tiedosto, DynaaminenTauluInterface<Integer> rivinumerot) {
         Map.Entry<String, DynaaminenTauluInterface<Integer>> entry = new TiedostoRiviNumeroEntry<String, DynaaminenTauluInterface<Integer>>(tiedosto, rivinumerot);
         int hash = hashCode(rivinumerot.hae(0).toString());
-            if(taulu == null){
-                taulu = new LinkedList();
-                taulu.add(entry);
-                täyttö++;
-            }else{
-                taulu.add(entry);
-            }
-            taulukko[hash] = taulu;
-        //System.out.println(tiedosto+": "+rivinumerot.toString());
-        if(loadFactor < (täyttö / koko))
-            rehash();
+        taulu = taulukko[hash];
+        if(taulu == null){
+            taulu = new LinkedList();
+            taulu.add(entry);
+        }else{
+            taulu.add(entry);
+       }
+       taulukko[hash] = taulu;
         
     }
 

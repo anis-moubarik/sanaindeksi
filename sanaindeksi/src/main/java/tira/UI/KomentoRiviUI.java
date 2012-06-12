@@ -70,7 +70,7 @@ public class KomentoRiviUI{
         }
         
         int rivityhteensä = 0;
-        DynaaminenTauluInterface<Integer> dt = null;
+        DynaaminenTauluInterface<Integer> dt;
         
         //Haetaan hashmapin iteraattori, ja lähdetään tulostamaan löydettyjä rivejä
         LinkedList[] taulu = s.getTiedostoJaRivinumerot().getTaulukko();
@@ -82,11 +82,8 @@ public class KomentoRiviUI{
                 Map.Entry pairs = (Map.Entry) taulu[i].get(j);
                 dt = (DynaaminenTauluInt) pairs.getValue();
                 String[] rivit = tr.getTiedostoJaRivit().get((String)pairs.getKey());
-                for (int k = 0; k < dt.size(); k++) {
-                    
-                    System.out.println(pairs.getKey()+":"+dt.hae(k)+":"+rivit[dt.hae(k)-1]);
-                    rivityhteensä++;
-                }
+                System.out.println(pairs.getKey()+":"+dt.hae(0)+":"+rivit[dt.hae(0)-1]);
+                rivityhteensä++;
             }
         }
         

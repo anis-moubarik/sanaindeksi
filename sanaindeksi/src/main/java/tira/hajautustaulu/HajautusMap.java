@@ -37,17 +37,15 @@ public class HajautusMap{
     public void put(String tiedosto, String[] rivit) {
         Map.Entry<String, String[]> entry = new TiedostoRiviEntry<String, String[]>(tiedosto, rivit);
         int hash = hashCode(entry.getKey());
-        while(search(entry) == false){
-            if(taulu == null){
-                taulu = new LinkedList();
-                taulu.add(entry);
+        LinkedList<Map.Entry> lisäys = new LinkedList<Map.Entry>();
+        if(taulukko[hash] == null){
+                lisäys.add(entry);
                 täyttö++;
             }else{
-                taulu.add(entry);
+                lisäys = taulukko[hash];
+                lisäys.add(entry);
             }
-            taulukko[hash] = taulu;
-        }
-        
+            taulukko[hash] = lisäys;
         if(loadFactor < (täyttö / koko))
             rehash();
         

@@ -77,7 +77,6 @@ public class Trie{
         for(i = 0; i < l; i++){
             if (solmu.getLapset().etsi(kirjaimet[i]) == null){
                 TrieSolmu lisättäväSolmu = new TrieSolmu(kirjaimet[i], i == l-1 ? true : false);
-                //lisättäväSolmu.lisääTiedostoJaRivinumero(tiedosto, rivi);
                 solmu.getLapset().lisää(lisättäväSolmu);
             }
             solmu = (TrieSolmu) solmu.getLapset().etsi(kirjaimet[i]);
