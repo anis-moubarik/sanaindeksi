@@ -72,7 +72,7 @@ public class HajautusMap {
      */
     public String[] get(String key) {
         int hash = (mjToInt(key) % koko);
-        while(taulu[hash] != null && taulu[hash].getKey() != key)
+        while(taulu[hash] != null && !taulu[hash].getKey().equals(key))
             hash = (hash + 1) % koko;
         if(taulu[hash] == null)
             return null;

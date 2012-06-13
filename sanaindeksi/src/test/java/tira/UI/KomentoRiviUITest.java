@@ -26,5 +26,10 @@ public class KomentoRiviUITest {
 
         ui.run();        
     }
+    
+    @Test
+    public void testUnion(){
+        
+    }
 
 }
