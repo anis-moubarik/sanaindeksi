@@ -3,8 +3,8 @@ package tira.UI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.Map;
+import java.util.Scanner;
 import tira.dynaaminentaulu.DynaaminenTauluInt;
 import tira.dynaaminentaulu.DynaaminenTauluInterface;
 import tira.dynaaminentaulu.DynaaminenTauluString;
@@ -73,11 +73,9 @@ public class KomentoRiviUI{
         int rivityhteensä = 0;
         DynaaminenTauluInterface<Integer> dt;
         
-        //Haetaan hashmapin iteraattori, ja lähdetään tulostamaan löydettyjä rivejä
+        //Haetaan Hajautustaulun entry-taulukko ja iteroidaan se läpi.
         TiedostoRiviNumeroEntry[] taulu = s.getTiedostoJaRivinumerot().getTaulukko();
-       
-        //Tähän jotain kivaa iterointia
-        
+        long loppu = System.currentTimeMillis();
         for (int i = 0; i < taulu.length; i++) {
             if(taulu[i] == null)
                 continue;
@@ -85,18 +83,18 @@ public class KomentoRiviUI{
             dt = (DynaaminenTauluInt) pair.getValue();
             for (int j = 0; j < dt.size(); j++) {
                 String[] rivit = tr.getTiedostoJaRivit().get((String)pair.getKey());
-                /*Tulostetaan pairs muuttujan avain, joka on tiedostonnimi, ja 
+                /* Tulostetaan pairs muuttujan avain, joka on tiedostonnimi, ja 
                  * haetaan dynaamisesta taulukosta rivi. Haetaan myös rivit taulukosta
                  * rivin määräämältä kohdalta merkkijono.
                  */
                 System.out.println(pair.getKey()+":"+dt.hae(j)+":"+rivit[dt.hae(j)-1]);
                 rivityhteensä++;
-                
-            }
             
+            }
         }
         
-        long loppu = System.currentTimeMillis();
+
+        
         
         System.out.println("Haussa kesti: "+(loppu-alku)+"ms. Yhteensä "+rivityhteensä+" riviä.");
     }

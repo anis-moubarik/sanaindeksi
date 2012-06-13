@@ -19,7 +19,7 @@ public class HajautusMapTest {
     
     @Before
     public void setUp() {
-        hm = new HajautusMap(5);
+        hm = new HajautusMap(3);
     }
     
     @Test
@@ -41,8 +41,4 @@ public class HajautusMapTest {
         
     }
     
-    @Test
-    public void rehashTest(){
-        hm.rehash();
-    }
 }

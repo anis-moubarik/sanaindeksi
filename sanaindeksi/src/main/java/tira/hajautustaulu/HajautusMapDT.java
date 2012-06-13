@@ -67,6 +67,8 @@ public class HajautusMapDT {
 
     private int mjToInt(String s) {
         char[] c = s.toCharArray();
+        if(c.length <= 0)
+            return 0;
         int summa = ascii(c[0]) + 128;
 
         if (c.length >= 3) {
