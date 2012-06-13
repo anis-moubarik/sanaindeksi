@@ -13,8 +13,9 @@ import java.util.Arrays;
 public class Mergesort implements MergesortInterface<String>{
         
     /**
-     * 
+     *  Otetaan String[] taulukko ja järjestetään se käyttäen MergeSorttia.
      * @param s
+     * @param lkm  
      */
     @Override
     public void sort(String[] s, int lkm){
@@ -22,6 +23,13 @@ public class Mergesort implements MergesortInterface<String>{
         mergesort(s, tmp, 0, lkm-1);
     }
 
+    /**
+     * Järjestetään rekursiolla kaikki taulukon osat, ja lopuksi yhdistetään.
+     * @param a
+     * @param tmp
+     * @param vas
+     * @param oik 
+     */
     private void mergesort(String[] a, String[] tmp, int vas, int oik) {
         if(vas < oik)
         {
@@ -34,7 +42,15 @@ public class Mergesort implements MergesortInterface<String>{
             merge(a, tmp, vas, mid+1, oik);
         }
     }
-
+    
+    /**
+     * Järjestetään ja yhdistetään taulukot suuruusjärjestykseen.
+     * @param a
+     * @param tmp
+     * @param vasP
+     * @param oikP
+     * @param oikLoppu 
+     */
     private void merge(String[] a, String[] tmp, int vasP, int oikP, int oikLoppu) {
         
         int vasLoppu = oikP -1;

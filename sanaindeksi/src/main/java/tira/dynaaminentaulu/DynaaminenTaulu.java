@@ -22,12 +22,16 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
     private TrieSolmu alkiot[];
     
     /**
-     * 
+     * Luodaan 10 alkion kokoinen taulukko.
      */
     public DynaaminenTaulu(){
         this(10);     
     }
     
+    /**
+     * Luodaan parametrin kokoinen taulukko.
+     * @param koko
+     */
     public DynaaminenTaulu(int koko){
         lkm = 0;
         alkiot = new TrieSolmu[koko];

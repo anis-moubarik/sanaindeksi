@@ -1,11 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package tira.hajautustaulu;
 
-import tira.dynaaminentaulu.DynaaminenTauluInt;
-import tira.dynaaminentaulu.DynaaminenTauluInterface;
+package tira.hajautustaulu;
 
 /**
  *
@@ -18,15 +12,26 @@ public class HajautusMap {
     private final double loadFactor = 0.8;
     private int täyttö;
 
+    /**
+     * 
+     * @param koko
+     */
     public HajautusMap(int koko) {
         taulu = new TiedostoRiviEntry[koko];
         this.koko = koko;
     }
 
+    /**
+     * 
+     */
     public HajautusMap() {
         this(10);
     }
     
+    /**
+     * 
+     * @return
+     */
     public TiedostoRiviEntry[] getTaulukko(){
         return taulu;
     }
@@ -42,6 +47,11 @@ public class HajautusMap {
         }
     }
     
+    /**
+     * 
+     * @param tiedosto
+     * @param sanat
+     */
     public void put(String tiedosto, String[] sanat) {
         int hash = (mjToInt(tiedosto) % koko);
 
@@ -55,6 +65,11 @@ public class HajautusMap {
             rehash();
     }
 
+    /**
+     * 
+     * @param key
+     * @return
+     */
     public String[] get(String key) {
         int hash = (mjToInt(key) % koko);
         while(taulu[hash] != null && taulu[hash].getKey() != key)

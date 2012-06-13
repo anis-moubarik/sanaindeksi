@@ -13,6 +13,7 @@ public interface MergesortInterface<G> {
     /**
      * Otetaan geneerinen taulukko ja järjestetään se käyttäen MergeSorttia.
      * @param s
+     * @param lkm  
      */
     public void sort(G[] s, int lkm);
 }

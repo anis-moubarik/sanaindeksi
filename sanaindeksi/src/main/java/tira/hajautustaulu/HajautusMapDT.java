@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tira.hajautustaulu;
 
 import tira.dynaaminentaulu.DynaaminenTauluInt;
@@ -18,19 +15,35 @@ public class HajautusMapDT {
     private final double loadFactor = 0.8;
     private int täyttö;
 
+    /**
+     * Konstruktori joka luo taulun parametrin koon mukaan.
+     * @param koko
+     */
     public HajautusMapDT(int koko) {
         taulu = new TiedostoRiviNumeroEntry[koko];
         this.koko = koko;
     }
 
+    /**
+     * Konstruktori ilman parametrejä.
+     */
     public HajautusMapDT() {
         this(10);
     }
     
+    /**
+     * Palautetaan Entry taulukko.
+     * @return TiedostoRiviNumeroEntry[]
+     */
     public TiedostoRiviNumeroEntry[] getTaulukko(){
         return taulu;
     }
 
+    
+    /**
+     * Rehash funktio jota käytetään, kun taulun täyttö ylittää loadFactorin (0.8).
+     * Luodaan uusi, kaksi kertaa isompi taulukko ja uudelleen hajautetaan arvot vanhasta taulusta.
+     */
     private void rehash() {
         TiedostoRiviNumeroEntry[] apu = taulu;
         taulu = new TiedostoRiviNumeroEntry[koko*2];
@@ -42,6 +55,11 @@ public class HajautusMapDT {
         }
     }
     
+    /**
+     * Lisätään tauluu parametrinä saadut tiedostonimi sekä rivi -dynaaminentaulukko.
+     * @param tiedosto
+     * @param rivit
+     */
     public void put(String tiedosto, DynaaminenTauluInterface<Integer> rivit) {
         int hash = (mjToInt(tiedosto) % koko);
 
@@ -55,6 +73,11 @@ public class HajautusMapDT {
             rehash();
     }
 
+    /**
+     * Haetaan taulukosta avaimen perusteella value.
+     * @param key
+     * @return
+     */
     public DynaaminenTauluInterface<Integer> get(String key) {
         int hash = (mjToInt(key) % koko);
         while(taulu[hash] != null && taulu[hash].getKey() != key)
@@ -65,6 +88,11 @@ public class HajautusMapDT {
             return (DynaaminenTauluInt)taulu[hash].getValue();
     }
 
+    /**
+     * Muutetaan parametrinä saatu merkkijono kokonaisluvuksi.
+     * @param s
+     * @return 
+     */
     private int mjToInt(String s) {
         char[] c = s.toCharArray();
         if(c.length <= 0)
@@ -86,6 +114,11 @@ public class HajautusMapDT {
         return summa;
     }
 
+    /**
+     * Mutetaan char muuttuja ascii koodiksi.
+     * @param c
+     * @return 
+     */
     private int ascii(char c) {
         return c - 64;
     }
