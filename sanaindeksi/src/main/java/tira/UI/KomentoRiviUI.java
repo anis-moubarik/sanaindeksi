@@ -69,8 +69,10 @@ public class KomentoRiviUI {
      * esiintyy molemmat sanat.
      */
     private void intersection(String eka, String toka) {
+        long alku = System.currentTimeMillis();
         TrieSolmu ekaSolmu = tr.etsiSolmu(eka);
         TrieSolmu tokaSolmu = tr.etsiSolmu(toka);
+        long loppu = System.currentTimeMillis();
         if (ekaSolmu == null && tokaSolmu == null) {
             System.out.println("Ei löytynyt kumpaakaan!");
             return;
@@ -112,11 +114,13 @@ public class KomentoRiviUI {
         for (int i = 0; i < ekanRivit.size(); i++) {
             for (int j = 0; j < tokanRivit.size(); j++) {
                 if ((int) ekanRivit.hae(i) == (int) tokanRivit.hae(j)) {
-                    intersection.lisää(ekanRivit.hae(i));
+                    if(!intersection.sisältää(ekanRivit.hae(i)))
+                        intersection.lisää(ekanRivit.hae(i));
                 }
 
             }
         }
+        long tulostusAlku = System.currentTimeMillis();
         String[] files = tiedostot.split("\t");
         int rivityhteensä = 0;
         for (int i = 0; i < files.length; i++) {
@@ -127,13 +131,20 @@ public class KomentoRiviUI {
                  * haetaan dynaamisesta taulukosta rivi. Haetaan myös rivit
                  * taulukosta rivin määräämältä kohdalta merkkijono.
                  */
-                System.out.println(files[i] + ":" + intersection.hae(j) + ":" + rivit[intersection.hae(j) - 1]);
-                rivityhteensä++;
+                if(intersection.hae(j) > rivit.length)
+                    break;
+                else if(rivit[intersection.hae(j) - 1].toLowerCase().contains(eka) && rivit[intersection.hae(j) - 1].toLowerCase().contains(toka)){
+                    System.out.println(files[i] + ":" + intersection.hae(j) + ":" + rivit[intersection.hae(j) - 1]);
+                    rivityhteensä++;
+                }
 
             }
 
 
         }
+        long tulostusLoppu = System.currentTimeMillis();
+        
+        System.out.println("Haussa kesti: " + (loppu - alku) + "ms. Tulostuksessa kesti: "+((tulostusLoppu-tulostusAlku)/1000)+"s. Yhteensä " + rivityhteensä + " riviä.");
     }
 
     /**
@@ -184,7 +195,7 @@ public class KomentoRiviUI {
         }
         long tulostusLoppu = System.currentTimeMillis();
         
-        System.out.println("Haussa kesti: " + (loppu - alku) + "ms. Tulostuksessa kesti: "+(tulostusLoppu-tulostusAlku)+"Yhteensä " + rivityhteensä + " riviä.");
+        System.out.println("Haussa kesti: " + (loppu - alku) + "ms. Tulostuksessa kesti: "+((tulostusLoppu-tulostusAlku)/1000)+"s. Yhteensä " + rivityhteensä + " riviä.");
     }
     
     

@@ -62,7 +62,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface<Integer>{
     @Override
     public boolean sisältää(Integer elem) {
         for (int i = 0; i < lkm; i++) {
-            if(alkiot[i] == elem)
+            if(alkiot[i] == (int)elem)
                 return true;
         }
         return false;
