@@ -125,4 +125,79 @@ public class DynaaminenTauluTest {
         assertEquals(expResult, result);
 
     }
+    
+    @Test
+    public void IntLisäysTesti(){
+        DynaaminenTauluInt instance = new DynaaminenTauluInt();
+        instance.lisää(2);
+        assertEquals(2, (int)instance.hae(0));
+    }
+    
+    @Test
+    public void IntSisältääköTesti(){
+        DynaaminenTauluInt instance = new DynaaminenTauluInt();
+        instance.lisää(3);
+        assertEquals(true, instance.sisältää(3));
+    }
+    
+    @Test
+    public void IntOnkoTyhjäTesti(){
+        DynaaminenTauluInt instance = new DynaaminenTauluInt();
+        assertEquals(true, instance.onkoTyhjä());
+    }
+    
+    @Test
+    public void IntPoistoTesti(){
+        DynaaminenTauluInt instance = new DynaaminenTauluInt();
+        instance.lisää(3);
+        instance.lisää(5);
+        instance.poista(1);
+        assertEquals(true, instance.size() == 1);
+    }
+    
+    @Test
+    public void IntHakuTesti(){
+        DynaaminenTauluInt instance = new DynaaminenTauluInt();
+        instance.lisää(1); instance.lisää(2); instance.lisää(3);
+        int lol = instance.etsi(2);
+        assertEquals(2, lol);
+    }
+    
+    @Test
+    public void StringLisäysTesti(){
+        DynaaminenTauluString instance = new DynaaminenTauluString();
+        instance.lisää("testi");
+        assertEquals("testi", instance.hae(0));
+    }
+    
+    @Test
+    public void StringSisältääköTesti(){
+        DynaaminenTauluString instance = new DynaaminenTauluString();
+        instance.lisää("three");
+        assertEquals(true, instance.sisältää("three"));
+    }
+    
+    @Test
+    public void StringOnkoTyhjäTesti(){
+        DynaaminenTauluString instance = new DynaaminenTauluString();
+        assertEquals(true, instance.onkoTyhjä());
+    }
+    
+    @Test
+    public void StringPoistoTesti(){
+        DynaaminenTauluString instance = new DynaaminenTauluString();
+        instance.lisää("one");
+        instance.lisää("three");
+        instance.poista(1);
+        assertEquals(true, instance.size() == 1);
+        assertEquals("one", instance.hae(0));
+    }
+    
+    @Test
+    public void StringHakuTesti(){
+        DynaaminenTauluString instance = new DynaaminenTauluString();
+        instance.lisää("one"); instance.lisää("two"); instance.lisää("three");
+        String two = instance.etsi("two");
+        assertEquals("two", two);
+    }
 }

@@ -32,8 +32,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface<Integer>{
      * Ilman parametreja alustetaan taulu 10 alkion kokoiseksi.
      */
     public DynaaminenTauluInt(){
-        lkm = 0;
-        alkiot = new Integer[10];
+        this(5);
     }
     
     @Override
@@ -130,7 +129,7 @@ public class DynaaminenTauluInt implements DynaaminenTauluInterface<Integer>{
     private int binääriHaku(Integer c) {
         int start, end, mid;
         start = 0;
-        end = alkiot.length - 1;
+        end = lkm;
         while(start <= end){
             mid = (start + end) / 2;
             

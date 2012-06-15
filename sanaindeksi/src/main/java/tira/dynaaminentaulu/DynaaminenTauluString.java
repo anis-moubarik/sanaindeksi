@@ -123,7 +123,7 @@ public class DynaaminenTauluString implements DynaaminenTauluInterface<String>{
         //järjestäTaulu();
         int start, end, mid;
         start = 0;
-        end = alkiot.length - 1;
+        end = lkm;
         while(start <= end){
             mid = (start + end) / 2;
             

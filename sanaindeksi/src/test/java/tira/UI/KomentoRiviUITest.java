@@ -20,7 +20,7 @@ public class KomentoRiviUITest {
      */
     @Test
     public void testLataa() throws Exception {
-        String komennot = "lataa kalevala.txt\nhae väinämöinen\nlopeta";
+        String komennot = "lataa kalevala.txt\nhae väinämöinen\nhae vaka vanha\nlopeta";
         InputStream in = new ByteArrayInputStream(komennot.getBytes());
         KomentoRiviUI ui = new KomentoRiviUI(in);
 
