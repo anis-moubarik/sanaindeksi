@@ -25,7 +25,7 @@ public class DynaaminenTaulu implements DynaaminenTauluInterface<TrieSolmu>{
      * Luodaan 10 alkion kokoinen taulukko.
      */
     public DynaaminenTaulu(){
-        this(10);     
+        this(5);     
     }
     
     /**

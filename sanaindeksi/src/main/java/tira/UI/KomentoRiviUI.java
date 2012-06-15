@@ -184,10 +184,12 @@ public class KomentoRiviUI {
                  * taulukosta rivin määräämältä kohdalta merkkijono.
                  */
                 System.out.println(pair.getKey() + ":" + dt.hae(j) + ":" + rivit[dt.hae(j) - 1]);
+                rivityhteensä++;
+                if(s.getLapset().size() < 2) //Jostain syystä ilman tätä tarkistusta, jää ohjelma looppaamaan vaan kahta riviä.
+                    continue;
                 for(int k = 0; k < s.getLapset().size(); k++){
                     rivityhteensä += tulostaLapset(s.getLapset().hae(k));
                 }
-                rivityhteensä++;
 
             }
             
