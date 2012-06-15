@@ -51,7 +51,7 @@ public class TrieSolmu{
         this.kirjain = kirjain;
         this.onkoSana = onkoSana;
         this.lapset = new DynaaminenTaulu();
-        this.tiedostoJaRivinumerot = new HajautusMapDT(50);
+        this.tiedostoJaRivinumerot = new HajautusMapDT(5);
     }
 
     /**

@@ -65,7 +65,8 @@ public class KomentoRiviUI {
     }
 
     /**
-     * Otetaan kaksi parametria ja etsitään niiden leikkaus, eli rivit joissa esiintyy molemmat sanat.
+     * Otetaan kaksi parametria ja etsitään niiden leikkaus, eli rivit joissa
+     * esiintyy molemmat sanat.
      */
     private void intersection(String eka, String toka) {
         TrieSolmu ekaSolmu = tr.etsiSolmu(eka);
@@ -135,14 +136,12 @@ public class KomentoRiviUI {
         }
     }
 
-        /**
-         * Etsitään parametrina annettua sanaa Trie puusta. Palauttaa
-         * rivinumerot ja rivin näytölle.
-         *
-         * @param etsittäväSana
-         */
-    
-
+    /**
+     * Etsitään parametrina annettua sanaa Trie puusta. Palauttaa rivinumerot ja
+     * rivin näytölle.
+     *
+     * @param etsittäväSana
+     */
     private void etsi(String etsittäväSana) {
         long alku = System.currentTimeMillis();
         TrieSolmu s = tr.etsiSolmu(etsittäväSana);
@@ -158,6 +157,54 @@ public class KomentoRiviUI {
         //Haetaan Hajautustaulun entry-taulukko ja iteroidaan se läpi.
         TiedostoRiviNumeroEntry[] taulu = s.getTiedostoJaRivinumerot().getTaulukko();
         long loppu = System.currentTimeMillis();
+        
+        long tulostusAlku = System.currentTimeMillis();
+        for (int i = 0; i < taulu.length; i++) {
+            if (taulu[i] == null) {
+                continue;
+            }
+            Map.Entry pair = taulu[i];
+            dt = (DynaaminenTauluInt) pair.getValue();
+            for (int j = 0; j < dt.size(); j++) {
+                String[] rivit = tr.getTiedostoJaRivit().get((String) pair.getKey());
+                /*
+                 * Tulostetaan pairs muuttujan avain, joka on tiedostonnimi, ja
+                 * haetaan dynaamisesta taulukosta rivi. Haetaan myös rivit
+                 * taulukosta rivin määräämältä kohdalta merkkijono.
+                 */
+                System.out.println(pair.getKey() + ":" + dt.hae(j) + ":" + rivit[dt.hae(j) - 1]);
+                for(int k = 0; k < s.getLapset().size(); k++){
+                    rivityhteensä += tulostaLapset(s.getLapset().hae(k));
+                }
+                rivityhteensä++;
+
+            }
+            
+            
+        }
+        long tulostusLoppu = System.currentTimeMillis();
+        
+        System.out.println("Haussa kesti: " + (loppu - alku) + "ms. Tulostuksessa kesti: "+(tulostusLoppu-tulostusAlku)+"Yhteensä " + rivityhteensä + " riviä.");
+    }
+    
+    
+    /**
+     * Tulostetaan solmun lapset ja lopuksi käydään rekursiivisesti läpi kaikki lapset.
+     * @param s
+     * @return 
+     */
+    private int tulostaLapset(TrieSolmu s) {
+
+        if (s == null) {
+            System.out.println("Ei löytynyt!");
+            return 0;
+        }
+
+        int rivityhteensä = 0;
+        DynaaminenTauluInterface<Integer> dt;
+
+        //Haetaan Hajautustaulun entry-taulukko ja iteroidaan se läpi.
+        TiedostoRiviNumeroEntry[] taulu = s.getTiedostoJaRivinumerot().getTaulukko();
         for (int i = 0; i < taulu.length; i++) {
             if (taulu[i] == null) {
                 continue;
@@ -176,11 +223,10 @@ public class KomentoRiviUI {
 
             }
         }
-
-
-
-
-        System.out.println("Haussa kesti: " + (loppu - alku) + "ms. Yhteensä " + rivityhteensä + " riviä.");
+        for(int j = 0; j < s.getLapset().size(); j++){
+            rivityhteensä += tulostaLapset(s.getLapset().hae(j));
+        }
+        return rivityhteensä;
     }
 
     /**
